@@ -19,10 +19,6 @@ Thumbs.db
 # Arquivos de ambiente local
 .env
 
-# Scripts locais (se específicos ao ambiente)
-*.bat
-*.sh
-
 # Ignore arquivos criados por ferramentas de controle de versão do Eclipse/Maven
 m2e-wtp/
 
@@ -31,3 +27,5 @@ m2e-wtp/
 
 # Arquivos do Git (não são necessários para versionamento no GitHub)
 .git/
+
+filename.txt
