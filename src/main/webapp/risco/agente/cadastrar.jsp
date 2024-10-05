@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Cadastrar Agente</h1>
-	<form action="insert">
+	<form action="store" method="POST">
 		<label for="nome">Nome</label>
 		<input type="text" name="nome">
 

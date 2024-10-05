@@ -48,32 +48,16 @@ import Controller.*;
 	                EmpresaController.create(request, response);
 	                break;
 	                
-	            case "/empresa/store":
-	                EmpresaController.store(request, response);
-	                break;
-	                
 	            case "/cargo/cadastrar":
 	                CargoController.create(request, response);
-	                break;
-	                
-	            case "/cargo/store":
-	                CargoController.store(request, response);
 	                break;
 	                
 	            case "/funcionario/cadastrar":
 	                FuncionarioController.create(request, response);
 	                break;
 	                
-	            case "/funcionario/store":
-	                FuncionarioController.store(request, response);
-	                break;
-	                
 	            case "/risco/cadastrar":
 	            	RiscoController.create(request, response);
-	            	break;
-            	
-	            case "/risco/store":
-	            	//RiscoController.store(request, response);
 	            	break;
 	            	
 	            default:
@@ -83,6 +67,36 @@ import Controller.*;
 	    }
 
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	        doGet(request, response);
+	        String action = request.getServletPath();
+	        System.out.println(action);
+
+	        /* ROTAS */
+	        switch(action) {
+	        	case "/empresa/store":
+	                EmpresaController.store(request, response);
+	                break;
+	                
+	            case "/cargo/store":
+	                CargoController.store(request, response);
+	                break;
+	                
+	                
+	            case "/funcionario/store":
+	                FuncionarioController.store(request, response);
+	                break;
+	                
+            	
+	            case "/risco/store":
+	            	//RiscoController.store(request, response);
+	            	break;
+	            	
+	            case "/risco/agente/store":
+	            	// agente controller
+	            	break;
+	            	
+	            default:
+	                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Rota não encontrada");
+	                break;
+	        }
 	    }
 	}

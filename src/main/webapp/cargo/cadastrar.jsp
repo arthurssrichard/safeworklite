@@ -7,20 +7,14 @@
 <title>Safe Work Lite</title>
 </head>
 <body>
-	<form action="insertCargo">
-		<label for="nome-empresa">Nome do cargo</label>
-		<input type="text" name="nome-cargo">
+	<form action="store" method="POST">
+		<label for="nome">Nome do cargo</label>
+		<input type="text" name="nome">
 		
-		<label for="nome-setor">Nome do setor</label>
-		<input type="text" name="nome-setor">
+		<label for="descricao">Descrição</label>
+		<textarea name="descricao"></textarea>
 		
-		<label for="senha">Senha</label>
-		<input type="password" name="senha">
-		
-		<label for="repete-senha">Repetir senha</label>
-		<input type="password" name="repete-senha">
-		
-		<input type="submit" value="viado">
+		<input type="submit" value="Cadastrar">
 		
 	</form>
 </body>

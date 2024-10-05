@@ -7,7 +7,7 @@
 <title>Safe Work Lite</title>
 </head>
 <body>
-	<form action="insertFuncionario">
+	<form action="store" method="POST">
 		<label for="nome">Nome</label>
 		<input type="text" name="nome">
 		

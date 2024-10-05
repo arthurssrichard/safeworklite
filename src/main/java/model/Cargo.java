@@ -7,9 +7,7 @@ public class Cargo {
 	
 	
 	
-	public Cargo(int iD, String nome, String descricao) {
-		super();
-		ID = iD;
+	public Cargo(String nome, String descricao) {
 		this.nome = nome;
 		this.descricao = descricao;
 	}

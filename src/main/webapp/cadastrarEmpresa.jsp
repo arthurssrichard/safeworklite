@@ -7,7 +7,7 @@
 <title>Faça seu cadastro</title>
 </head>
 <body>
-	<form action="insertEmpresa">
+	<form action="insertEmpresa" method="POST">
 		<label for="nome-empresa">Nome da empresa</label>
 		<input type="text" name="nome-empresa">
 		
@@ -20,7 +20,7 @@
 		<label for="repete-senha">Repetir senha</label>
 		<input type="password" name="repete-senha">
 		
-				<input type="submit" value="viado">
+		<input type="submit" value="Cadatrar">
 		
 	</form>
 </body>
