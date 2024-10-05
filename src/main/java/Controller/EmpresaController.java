@@ -12,7 +12,11 @@ import model.EmpresaSetor;
 public class EmpresaController {
 
 	
-	public static void inserirEmpresa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	public static void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		response.sendRedirect("cadastrarEmpresa.jsp");
+	}
+	
+	public static void store(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		EmpresaSetorDAO dao = new EmpresaSetorDAO();
 		EmpresaSetor empresa = new EmpresaSetor(request.getParameter("nome-empresa"), request.getParameter("nome-setor"), request.getParameter("senha"));
 		
@@ -20,8 +24,5 @@ public class EmpresaController {
 		response.sendRedirect("index.jsp");
 	}
 	
-	public static void cadastrarEmpresa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("cadastrarEmpresa.jsp");
-	}
 
 }
