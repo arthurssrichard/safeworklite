@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import Controller.*;
 
 @WebServlet(urlPatterns = {
+		"/login",
+		"/auth",
 	    /* Empresa Routes */
-	    "/empresa/cadastro", 
-	    "/empresa/store",
+	    "/cadastro", 
+	    "/insertEmpresa",
 	    
 	    /* Cargo Routes */
 	    "/cargo/cadastrar", 
@@ -44,7 +46,11 @@ import Controller.*;
 
 	        /* ROTAS */
 	        switch(action) {
-	            case "/empresa/cadastro":
+            	case "/login":
+	                response.sendRedirect("login.jsp");
+	                break;
+	        
+	            case "/cadastro":
 	                EmpresaController.create(request, response);
 	                break;
 	                
@@ -72,7 +78,11 @@ import Controller.*;
 
 	        /* ROTAS */
 	        switch(action) {
-	        	case "/empresa/store":
+	        	case "/auth":
+	                EmpresaController.logar(request, response);
+	                break;
+	        
+	        	case "/insertEmpresa":
 	                EmpresaController.store(request, response);
 	                break;
 	                
