@@ -21,7 +21,7 @@ public class EmpresaController {
 			int id = EmpresaSetorDAO.validate(empresa_nome, password);
 			session.setAttribute("id", id);
 			
-			System.out.printf("Tentativa de login: Sucesso: %s | %s",id,empresa_nome);
+			System.out.printf("Tentativa de login: Sucesso: %s | %s \n",id,empresa_nome);
 			
 			response.sendRedirect("dashboard/"); //ajeitar onde vai ser essa home ai emm
 		}else {

@@ -12,7 +12,8 @@ import model.EmpresaSetor;
 public class Controller {
 
 	public static void create(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.sendRedirect("cadastrar.jsp");
+	        throws ServletException, IOException {
+	    response.sendRedirect("cadastrar.jsp");
 	}
+
 }

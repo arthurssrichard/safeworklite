@@ -8,6 +8,16 @@
 <title>Safe Work Lite - Dashboard</title>
 </head>
 <body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/dashboard/"> </a>
+				<li><a href="/SafeWorkManagerLite/cargo">Cargos</a>
+				<li><a href="/dashboard/"> </a>
+				<li><a href="/dashboard/"> </a>
+			</ul>
+		</nav>
+	</header>
 	<h1>Bem vindo!</h1>
 	<%
 		if(session != null && session.getAttribute("id") != null){

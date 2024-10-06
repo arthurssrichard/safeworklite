@@ -7,29 +7,39 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import Controller.*;
+import Controller.CargoController;
+import Controller.EmpresaController;
+import Controller.FuncionarioController;
+import Controller.RiscoController;
 
 @WebServlet(urlPatterns = {
+		/* Login e autenticação */
 		"/login",
 		"/auth",
-	    /* Empresa Routes */
+		
+	    /* Empresa */
 	    "/cadastro", 
 	    "/insertEmpresa",
 	    
-	    /* Cargo Routes */
+	    /* Cargo */
+	    "/cargo/", 
 	    "/cargo/cadastrar", 
 	    "/cargo/store",
+	    "/cargo/edit",
+	    "/cargo/update",
+	    "/cargo/delete",
 	    
-	    /* Funcionario Routes */
+	    /* Funcionario */
 	    "/funcionario/cadastrar", 
 	    "/funcionario/store",
 	    
-	    /* Risco Routes */
+	    /* Risco */
 	    "/risco/cadastrar", 
 	    "/risco/store",
 	    
-	    /* Risco Routes */
+	    /* Agentes (que causam riscos) */
 	    "/risco/agente/cadastrar", 
 	    "/risco/agente/store"
 	})
@@ -54,8 +64,16 @@ import Controller.*;
 	                EmpresaController.create(request, response);
 	                break;
 	                
+	            case "/cargo/":
+	                CargoController.list(request, response);
+	                break;
+	                
 	            case "/cargo/cadastrar":
 	                CargoController.create(request, response);
+	                break;
+	                
+	            case "/cargo/edit":
+	                CargoController.edit(request, response);
 	                break;
 	                
 	            case "/funcionario/cadastrar":
@@ -88,6 +106,14 @@ import Controller.*;
 	                
 	            case "/cargo/store":
 	                CargoController.store(request, response);
+	                break;
+	                
+	            case "/cargo/update":
+	                CargoController.update(request, response);
+	                break;
+	                
+	            case "/cargo/delete":
+	                CargoController.delete(request, response);
 	                break;
 	                
 	                
