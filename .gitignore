@@ -1,0 +1,31 @@
+# Arquivos de IDE (Eclipse, IntelliJ, etc.)
+.classpath
+.project
+.settings/
+
+# Ignore diretórios de compilação e temporários
+target/
+
+# Ignore arquivos Maven gerados automaticamente
+.mvn/
+
+# Logs de compilação e execução
+*.log
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de ambiente local
+.env
+
+# Ignore arquivos criados por ferramentas de controle de versão do Eclipse/Maven
+m2e-wtp/
+
+# Exclua arquivos de recursos gerados para o ambiente de desenvolvimento
+*.swp
+
+# Arquivos do Git (não são necessários para versionamento no GitHub)
+.git/
+
+filename.txt
