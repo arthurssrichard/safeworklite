@@ -14,7 +14,7 @@
 		<label for="descricao">Descrição</label>
 		<textarea name="descricao"></textarea>
 		
-		<input type="submit" value="Cadastrar">
+		<input type="submit" value="Cadastrar Cargo">
 		
 	</form>
 </body>

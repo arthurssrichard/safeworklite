@@ -32,8 +32,12 @@ import Controller.RiscoController;
 	    "/cargo/delete",
 	    
 	    /* Funcionario */
+	    "/funcionario/",
 	    "/funcionario/cadastrar", 
 	    "/funcionario/store",
+	    "/funcionario/edit",
+	    "/funcionario/update",
+	    "/funcionario/delete",
 	    
 	    /* Risco */
 	    "/risco/cadastrar", 
@@ -52,7 +56,7 @@ import Controller.RiscoController;
 
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        String action = request.getServletPath();
-	        System.out.println(action);
+	        System.out.println("GET: "+action);
 
 	        /* ROTAS */
 	        switch(action) {
@@ -76,8 +80,16 @@ import Controller.RiscoController;
 	                CargoController.edit(request, response);
 	                break;
 	                
+	            case "/funcionario/":
+	                FuncionarioController.list(request, response);
+	                break;
+	                
 	            case "/funcionario/cadastrar":
 	                FuncionarioController.create(request, response);
+	                break;
+	                
+	            case "/funcionario/edit":
+	                FuncionarioController.edit(request, response);
 	                break;
 	                
 	            case "/risco/cadastrar":
@@ -92,7 +104,7 @@ import Controller.RiscoController;
 
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        String action = request.getServletPath();
-	        System.out.println(action);
+	        System.out.println("POST: "+action);
 
 	        /* ROTAS */
 	        switch(action) {
@@ -119,6 +131,14 @@ import Controller.RiscoController;
 	                
 	            case "/funcionario/store":
 	                FuncionarioController.store(request, response);
+	                break;
+	                
+	            case "/funcionario/update":
+	            	FuncionarioController.update(request, response);
+	            	break;
+	                
+	            case "/funcionario/delete":
+	                FuncionarioController.delete(request, response);
 	                break;
 	                
             	

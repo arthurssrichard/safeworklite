@@ -38,7 +38,6 @@ public class CargoController extends Controller {
 
 		ArrayList<Cargo> lista = CargoDAO.listar(id_setor);
 
-		CargoDAO dao = new CargoDAO();
 
 		// manda pra pagina da lista com os atributos
 		request.setAttribute("cargos", lista);
