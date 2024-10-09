@@ -9,14 +9,14 @@ import model.Cargo;
 
 public class CargoDAO {
 	/* CRUD CREATE */
-	public void adicionar(Cargo tupla){ 
+	public void adicionar(Cargo tupla){  //REFATORADO OK
 		String sql = "INSERT INTO Cargos (nome, descricao, ID_setor) VALUES (?,?, ?)";
 		try {
 			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, tupla.getNome());
 			pst.setString(2, tupla.getDescricao());
-			pst.setInt(3, tupla.getID_setor());
+			pst.setInt(3, tupla.getSetor().getID());
 			
 			pst.executeUpdate();
 			con.close();
@@ -25,7 +25,7 @@ public class CargoDAO {
 		}
 	}
 	
-	public static ArrayList<Cargo> listar(int id_setor){
+	public static ArrayList<Cargo> listar(int id_setor){ // NAO PRECISA DE REFATORACAO
 		ArrayList<Cargo> lista = new ArrayList<>();
 		
 		String sql = "SELECT ID, nome, descricao FROM Cargos WHERE ID_setor=?";
@@ -54,7 +54,7 @@ public class CargoDAO {
 	}
 	
 	/* CRUD READ */
-	public static Cargo find(int id){
+	public static Cargo find(int id){// NAO PRECISA DE REFATORACAO
 		String sql = "SELECT nome, descricao FROM Cargos WHERE ID=?";
 		
 		Cargo cargo = null;
@@ -81,7 +81,7 @@ public class CargoDAO {
 	}
 	
 	/* CRUD UPDATE */
-	public static void atualizar(Cargo tupla) {
+	public static void atualizar(Cargo tupla) { // NAO PRECISA DE REFATORACAO
 		String sql = "UPDATE cargos SET nome=?, descricao=? where id=?";
 		try {
 			Connection con = DatabaseConnection.getConnection();
@@ -98,7 +98,7 @@ public class CargoDAO {
 	}
 	
 	/* CRUD DELETE */
-	public static void remove(int id) {
+	public static void remove(int id) { // NAO PRECISA DE REFATORACAO
 		String sql = "DELETE FROM Cargos WHERE ID = ?";
 		try {
 			Connection con = DatabaseConnection.getConnection();

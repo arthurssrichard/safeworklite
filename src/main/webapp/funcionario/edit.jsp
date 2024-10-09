@@ -9,7 +9,7 @@
     	
     	String nome = funcionario.getNome();
     	String dataMatricula = funcionario.getDataMatricula();
-    	int idCargoFuncionario = funcionario.getID_cargo();
+    	int idCargoFuncionario = funcionario.getCargo().getID();
     	int idFuncionario = funcionario.getID();
     %>
 <!DOCTYPE html>

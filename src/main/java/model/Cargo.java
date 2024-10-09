@@ -4,16 +4,18 @@ public class Cargo {
 	private int ID;
 	private String nome;
 	private String descricao;
-	private int ID_setor;
+	private EmpresaSetor setor;
 	
 	
-	
+	public Cargo() {
+		
+	}
 
-	public Cargo(String nome, String descricao, int iD_setor) {
+	public Cargo(String nome, String descricao, EmpresaSetor setor) {
 		super();
 		this.nome = nome;
 		this.descricao = descricao;
-		this.ID_setor = iD_setor;
+		this.setor = setor;
 	}
 
 	public Cargo(int ID, String nome, String descricao) {
@@ -45,13 +47,17 @@ public class Cargo {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	public int getID_setor() {
-		return ID_setor;
+
+	public EmpresaSetor getSetor() {
+		return setor;
 	}
 
-	public void setID_setor(int iD_setor) {
-		ID_setor = iD_setor;
+	public void setSetor(EmpresaSetor setor) {
+		this.setor = setor;
 	}
+	
+	
+	
+
 	
 }

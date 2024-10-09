@@ -6,7 +6,7 @@ public class Funcionario {
 	private String dataMatricula;
 	private String dataDemissao;
 	private Cargo cargo;
-	private int ID_setor;
+	private EmpresaSetor setor;
 	
 	
 	public Funcionario(int iD, String nome, String dataMatricula) {
@@ -17,21 +17,21 @@ public class Funcionario {
 	}
 	
 	
-	public Funcionario(String nome, String dataMatricula, Cargo cargo, int iD_setor) {
+	public Funcionario(String nome, String dataMatricula, Cargo cargo, EmpresaSetor setor) {
 		super();
 		this.nome = nome;
 		this.dataMatricula = dataMatricula;
 		this.cargo = cargo;
-		this.ID_setor = iD_setor;
+		this.setor = setor;
 	}
 
-	public Funcionario(int iD, String nome, String dataMatricula, Cargo cargo, int iD_setor) {
+	public Funcionario(int iD, String nome, String dataMatricula, Cargo cargo, EmpresaSetor setor) {
 		super();
 		this.ID = iD;
 		this.nome = nome;
 		this.dataMatricula = dataMatricula;
 		this.cargo = cargo;
-		this.ID_setor = iD_setor;
+		this.setor = setor;
 	}
 
 
@@ -85,17 +85,13 @@ public class Funcionario {
 	}
 
 
-	public int getID_setor() {
-		return ID_setor;
+	public EmpresaSetor getSetor() {
+		return setor;
 	}
 
 
-
-
-	public void setID_setor(int iD_setor) {
-		ID_setor = iD_setor;
+	public void setSetor(EmpresaSetor setor) {
+		this.setor = setor;
 	}
-	
-	
-	
+
 }

@@ -11,18 +11,23 @@ import javax.servlet.http.HttpSession;
 
 import dao.CargoDAO;
 import model.Cargo;
+import model.EmpresaSetor;
 
 public class CargoController extends Controller {
 
 	public static void store(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		
 		int id_setor = (int) session.getAttribute("id");
+		EmpresaSetor setor = new EmpresaSetor();
+		setor.setID(id_setor);
 
 		CargoDAO dao = new CargoDAO();
 		String nome = request.getParameter("nome");
 		String descricao = request.getParameter("descricao");
-		Cargo cargo = new Cargo(nome, descricao, id_setor);
+		
+		Cargo cargo = new Cargo(nome, descricao, setor);
 
 		dao.adicionar(cargo);
 		response.sendRedirect(request.getContextPath() + "/cargo");

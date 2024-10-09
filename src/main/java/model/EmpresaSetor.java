@@ -12,6 +12,10 @@ public class EmpresaSetor {
 		this.nome_setor = nome_setor;
 		this.senha = senha;
 	}
+	
+	public EmpresaSetor() {
+
+	}
 
 	public int getID() {
 		return ID;

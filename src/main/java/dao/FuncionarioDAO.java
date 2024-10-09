@@ -6,20 +6,21 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import model.Cargo;
+import model.EmpresaSetor;
 import model.Funcionario;
 import model.FuncionarioComCargo;
 
 public class FuncionarioDAO {
 	/* CRUD CREATE */
-	public void adicionar(Funcionario tupla) {
+	public static void adicionar(Funcionario tupla) {
 		String sql = "INSERT INTO funcionarios (nome, data_matricula, ID_setor, ID_cargo) VALUES (?,?,?,?)";
 		try {
 			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, tupla.getNome());
 			pst.setString(2, tupla.getDataMatricula());
-			pst.setInt(3, tupla.getID_setor());
-			pst.setInt(4, tupla.getID_cargo());
+			pst.setInt(3, tupla.getSetor().getID());
+			pst.setInt(4, tupla.getCargo().getID());
 
 			pst.executeUpdate();
 			con.close();
@@ -38,7 +39,7 @@ public class FuncionarioDAO {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, tupla.getNome());
 			pst.setString(2, tupla.getDataMatricula());
-			pst.setInt(3, tupla.getID_cargo());
+			pst.setInt(3, tupla.getCargo().getID());
 			pst.setInt(4, tupla.getID());
 			
 			pst.executeUpdate();
@@ -50,11 +51,10 @@ public class FuncionarioDAO {
 
 	/* CRUD READ */
 	public static Funcionario find(int id){ // REFATORAR
-		String sql = "SELECT f.nome, f.data_matricula, f.data_demissao, f.ID_setor "
-				+ "c.ID as cargo_id, c.nome as cargo_nome c.descricao as cargo_descricao "
-				+ "FROM funcionarios f "
-				+ "JOIN cargos c ON f.ID_cargo = c.ID "
-				+ "WHERE ID=?";
+		String sql = "SELECT f.nome, f.data_matricula, f.data_demissao, f.ID_setor, "
+				+ "c.ID as cargo_id, c.nome as cargo_nome, c.descricao as cargo_descricao "
+				+ "FROM funcionarios f JOIN cargos c ON f.ID_cargo = c.ID "
+				+ "WHERE f.ID=?;";
 		
 		Funcionario funcionario = null;
 		try {
@@ -76,7 +76,9 @@ public class FuncionarioDAO {
 	            
 	            // Cria o objeto funcionario
 	            Cargo cargo = new Cargo(cargo_id, cargo_nome, cargo_descricao);
-	            funcionario = new Funcionario(id, nome, dataMatricula, cargo, setor_id);
+	            EmpresaSetor setor = new EmpresaSetor();
+	            setor.setID(setor_id);;
+	            funcionario = new Funcionario(id, nome, dataMatricula, cargo, setor);
 	        }
 			
 			con.close();
