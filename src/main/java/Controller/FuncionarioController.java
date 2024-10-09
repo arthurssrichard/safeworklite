@@ -33,7 +33,7 @@ public class FuncionarioController extends Controller {
 	}
 	
 	public static void store(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException { // PRECISO REFATORAR
 		
 		HttpSession session = request.getSession();
 		int id_setor = (int) session.getAttribute("id");
@@ -42,7 +42,7 @@ public class FuncionarioController extends Controller {
 		String nome = request.getParameter("nome");
 		String dataMatricula = request.getParameter("data-matricula");
 		int id_cargo = (int) Integer.parseInt(request.getParameter("id-cargo"));
-		Funcionario funcionario = new Funcionario(nome, dataMatricula, id_cargo, id_setor);
+		Funcionario funcionario = new Funcionario(nome, dataMatricula, cargo, id_setor);
 
 		dao.adicionar(funcionario);
 		response.sendRedirect(request.getContextPath() + "/funcionario");
