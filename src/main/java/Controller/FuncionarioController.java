@@ -18,13 +18,16 @@ import model.FuncionarioComCargo;
 
 public class FuncionarioController extends Controller {
 
+	/* Método de levar para a view de cadastro */
 	public static void create(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// Pega o setor setor pelo id salvo na seção
 		HttpSession session = request.getSession();
 		int id_setor = (int) session.getAttribute("id");
 
-		ArrayList<Cargo> lista = CargoDAO.listar(id_setor);
+		// Gera uma lista de cargos
+		ArrayList<Cargo> lista = CargoDAO.listar(id_setor); // o id setor é passado para retornar apenas os cargos cadastrados pela empresa/setor
 
 		// manda pra pagina da lista com os atributos
 		request.setAttribute("cargos", lista);
@@ -32,6 +35,7 @@ public class FuncionarioController extends Controller {
 		rd.forward(request, response);
 	}
 
+	/* Método que recebe os dados preenchidos no formulário e guarda no banco de dados */
 	public static void store(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException { // PRECISO REFATORAR
 
@@ -56,6 +60,7 @@ public class FuncionarioController extends Controller {
 		response.sendRedirect(request.getContextPath() + "/funcionario");
 	}
 
+	/* Método de levar para a view de lista de funcionários, passando um arraylist de objetos */
 	public static void list(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
