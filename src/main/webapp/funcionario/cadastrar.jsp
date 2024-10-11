@@ -15,10 +15,10 @@
 <body>
 	<form action="store" method="POST">
 		<label for="nome">Nome</label>
-		<input type="text" name="nome">
+		<input type="text" name="nome" required>
 		
 		<label for="nome-setor">Data de contratação</label>
-		<input type="date" name="data-matricula">
+		<input type="date" name="data-matricula" required>
 		
 		<select name="id-cargo">
 			<%for(int i = 0; i < cargos.size(); i++){%>

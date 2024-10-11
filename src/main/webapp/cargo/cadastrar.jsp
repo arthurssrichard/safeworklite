@@ -9,7 +9,7 @@
 <body>
 	<form action="store" method="POST">
 		<label for="nome">Nome do cargo</label>
-		<input type="text" name="nome">
+		<input type="text" name="nome" required>
 		
 		<label for="descricao">Descrição</label>
 		<textarea name="descricao"></textarea>

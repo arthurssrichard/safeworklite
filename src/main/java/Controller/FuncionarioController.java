@@ -37,8 +37,15 @@ public class FuncionarioController extends Controller {
 
 	/* Método que recebe os dados preenchidos no formulário e guarda no banco de dados */
 	public static void store(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException { // PRECISO REFATORAR
+			throws ServletException, IOException {
 
+		// Caso um espertalhão vá no inspecionar e tire o "required" do input
+		if(request.getParameter("nome") == "" || request.getParameter("data-matricula") == ""){
+			response.sendRedirect(request.getContextPath() + "/funcionario");
+			System.out.println("Erro store Funcionario: Dados não fornecidos corretamente");
+			return;
+		}
+		
 		// Monta atributo "setor" que o funcionario pertence
 		HttpSession session = request.getSession();
 		int id_setor = (int) session.getAttribute("id");

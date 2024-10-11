@@ -21,6 +21,12 @@ public class CargoController extends Controller {
 	public static void store(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		// Caso um espertalhão vá no inspecionar e tire o "required" do input
+		if(request.getParameter("nome") == ""){
+			response.sendRedirect(request.getContextPath() + "/cargo");
+			System.out.println("Erro store Cargo: Dados não fornecidos corretamente");
+			return;
+		}
 		// Monta o atributo "setor" do cargo
 		HttpSession session = request.getSession();
 		int id_setor = (int) session.getAttribute("id");

@@ -128,7 +128,6 @@ import Controller.RiscoController;
 	                CargoController.delete(request, response);
 	                break;
 	                
-	                
 	            case "/funcionario/store":
 	                FuncionarioController.store(request, response);
 	                break;
