@@ -53,9 +53,9 @@ public class FuncionarioDAO {
 	/* CRUD READ */
 	public static Funcionario find(int id){ // REFATORAR
 		String sql = "SELECT f.nome, f.data_matricula, f.data_demissao, f.ID_setor, "
-				+ "c.ID as cargo_id, c.nome as cargo_nome, c.descricao as cargo_descricao "
-				+ "FROM funcionarios f JOIN cargos c ON f.ID_cargo = c.ID "
-				+ "WHERE f.ID=?;";
+				+    "c.ID as cargo_id, c.nome as cargo_nome, c.descricao as cargo_descricao "
+				+    "FROM funcionarios f JOIN cargos c ON f.ID_cargo = c.ID "
+				+    "WHERE f.ID=?;";
 		
 		Funcionario funcionario = null;
 		try {
@@ -80,6 +80,7 @@ public class FuncionarioDAO {
 	            EmpresaSetor setor = new EmpresaSetor();
 	            setor.setID(setor_id);;
 	            funcionario = new Funcionario(id, nome, dataMatricula, cargo, setor);
+	            funcionario.setDataDemissao(dataDemissao);
 	        }
 			
 			con.close();
