@@ -9,6 +9,7 @@
     	
     	String nome = funcionario.getNome();
     	String dataMatricula = funcionario.getDataMatricula();
+    	String dataDemissao = funcionario.getDataDemissao();
     	int idCargoFuncionario = funcionario.getCargo().getID();
     	int idFuncionario = funcionario.getID();
     %>
@@ -25,6 +26,9 @@
 		
 		<label for="data-matricula">Data de contratação</label>
 		<input type="date" name="data-matricula" value="<%=dataMatricula%>">
+		
+		<label for="data-demissao">Data de demissão</label>
+		<input type="date" name="data-demissao" value="<%=dataDemissao%>">
 		
 		<label for="id-cargo">Cargo</label>
 		<select name="id-cargo">

@@ -24,7 +24,7 @@ public class EmpresaSetorDAO {
 	}
 	
 	public static int validate(String empresa, String password) {
-		int status = -1;
+		int status = -1;	
 		String sql = "SELECT * FROM Empresas_Setor WHERE nome_empresa=? AND senha=?";
 		
 		try {

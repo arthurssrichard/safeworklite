@@ -21,7 +21,7 @@
 	<h1>Bem vindo!</h1>
 	<%
 		if(session != null && session.getAttribute("id") != null){
-			out.print("ID: " + session.getAttribute("id"));
+			out.print("Nome: " + (String) session.getAttribute("nomeEmpresa"));
 		}
 	%>
 </body>

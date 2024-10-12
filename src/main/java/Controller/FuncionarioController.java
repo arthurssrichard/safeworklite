@@ -118,8 +118,10 @@ public class FuncionarioController extends Controller {
 		int id = (int) Integer.parseInt(request.getParameter("id"));
 		String nome = request.getParameter("nome");
 		String dataMatricula = request.getParameter("data-matricula");
+		String dataDemissao = request.getParameter("data-demissao");
 		Funcionario funcionario = new Funcionario(id, nome, dataMatricula, cargo, setor);
-
+		funcionario.setDataDemissao(dataDemissao);
+		
 		// Atualiza e redireciona para a lista de funcionários
 		FuncionarioDAO.atualizar(funcionario);
 		response.sendRedirect(request.getContextPath() + "/funcionario");

@@ -20,6 +20,7 @@ public class EmpresaController {
 			HttpSession session = request.getSession();
 			int id = EmpresaSetorDAO.validate(empresa_nome, password);
 			session.setAttribute("id", id);
+			session.setAttribute("nomeEmpresa", empresa_nome);
 			
 			System.out.printf("Tentativa de login: Sucesso: %s | %s \n",id,empresa_nome);
 			

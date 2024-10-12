@@ -20,6 +20,7 @@
 		<label for="nome-setor">Data de contratação</label>
 		<input type="date" name="data-matricula" required>
 		
+		<label for="id-cargo">Função</label>
 		<select name="id-cargo">
 			<%for(int i = 0; i < cargos.size(); i++){%>
 				<option value="<%=cargos.get(i).getID()%>"><%=cargos.get(i).getNome() %></option>

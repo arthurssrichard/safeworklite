@@ -20,7 +20,7 @@
 		<label for="repete-senha">Repetir senha</label>
 		<input type="password" name="repete-senha">
 		
-		<input type="submit" value="Cadatrar">
+		<input type="submit" value="Cadastrar">
 		
 	</form>
 </body>

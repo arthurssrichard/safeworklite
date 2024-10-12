@@ -33,14 +33,15 @@ public class FuncionarioDAO {
 
 	/* CRUD UPDATE */
 	public static void atualizar(Funcionario tupla) {
-		String sql = "UPDATE funcionarios SET nome=?, data_matricula=?, ID_cargo=? where id=?";
+		String sql = "UPDATE funcionarios SET nome=?, data_matricula=?, data_demissao=?, ID_cargo=? where id=?";
 		try {
 			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, tupla.getNome());
 			pst.setString(2, tupla.getDataMatricula());
-			pst.setInt(3, tupla.getCargo().getID());
-			pst.setInt(4, tupla.getID());
+			pst.setString(3, tupla.getDataDemissao());
+			pst.setInt(4, tupla.getCargo().getID());
+			pst.setInt(5, tupla.getID());
 			
 			pst.executeUpdate();
 			con.close();
