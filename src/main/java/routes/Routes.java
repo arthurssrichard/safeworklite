@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Controller.CargoController;
 import Controller.EmpresaController;
+import Controller.ExameController;
 import Controller.FuncionarioController;
 
 @WebServlet(urlPatterns = {
@@ -35,7 +36,15 @@ import Controller.FuncionarioController;
 	    "/funcionario/store",
 	    "/funcionario/edit",
 	    "/funcionario/update",
-	    "/funcionario/delete"
+	    "/funcionario/delete",
+	    
+	    /* Exame */
+	    "/exame/", 
+	    "/exame/cadastrar", 
+	    "/exame/store",
+	    "/exame/edit",
+	    "/exame/update",
+	    "/exame/delete"
 	})
 	public class Routes extends HttpServlet {
 	    private static final long serialVersionUID = 1L;
@@ -81,6 +90,18 @@ import Controller.FuncionarioController;
 	            case "/funcionario/edit":
 	                FuncionarioController.edit(request, response);
 	                break;
+	                
+	            case "/exame/":
+	                ExameController.list(request, response);
+	                break;
+	                
+	            case "/exame/cadastrar":
+	            	ExameController.create(request, response);
+	                break;
+	                
+	            case "/exame/edit":
+	            	//ExameController.edit(request, response);
+	                break;
 	            	
 	            default:
 	                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Rota não encontrada");
@@ -124,6 +145,18 @@ import Controller.FuncionarioController;
 	                
 	            case "/funcionario/delete":
 	                FuncionarioController.delete(request, response);
+	                break;
+	                
+	            case "/exame/store":
+	                ExameController.store(request, response);
+	                break;
+	                
+	            case "/exame/update":
+	            	//ExameController.update(request, response);
+	            	break;
+	                
+	            case "/exame/delete":
+	            	//ExameController.delete(request, response);
 	                break;
 	            	
 	            default:

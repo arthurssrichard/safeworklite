@@ -29,3 +29,5 @@ m2e-wtp/
 .git/
 
 filename.txt
+/build/
+src/main/webapp/META-INF/MANIFEST.MF
