@@ -14,6 +14,7 @@
 				<li><a href="/SafeWorkManagerLite/login">Login</a>
 				<li><a href="/SafeWorkManagerLite/cargo">Cargos</a>
 				<li><a href="/SafeWorkManagerLite/funcionario">Funcionários</a>
+				<li><a href="/SafeWorkManagerLite/exame">Exames</a>
 				<li><a href="/dashboard/"> </a>
 			</ul>
 		</nav>

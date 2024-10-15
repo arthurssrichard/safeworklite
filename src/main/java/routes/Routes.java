@@ -7,12 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import Controller.CargoController;
 import Controller.EmpresaController;
 import Controller.FuncionarioController;
-import Controller.RiscoController;
 
 @WebServlet(urlPatterns = {
 		/* Login e autenticação */
@@ -37,15 +35,7 @@ import Controller.RiscoController;
 	    "/funcionario/store",
 	    "/funcionario/edit",
 	    "/funcionario/update",
-	    "/funcionario/delete",
-	    
-	    /* Risco */
-	    "/risco/cadastrar", 
-	    "/risco/store",
-	    
-	    /* Agentes (que causam riscos) */
-	    "/risco/agente/cadastrar", 
-	    "/risco/agente/store"
+	    "/funcionario/delete"
 	})
 	public class Routes extends HttpServlet {
 	    private static final long serialVersionUID = 1L;
@@ -91,10 +81,6 @@ import Controller.RiscoController;
 	            case "/funcionario/edit":
 	                FuncionarioController.edit(request, response);
 	                break;
-	                
-	            case "/risco/cadastrar":
-	            	RiscoController.create(request, response);
-	            	break;
 	            	
 	            default:
 	                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Rota não encontrada");
@@ -139,15 +125,6 @@ import Controller.RiscoController;
 	            case "/funcionario/delete":
 	                FuncionarioController.delete(request, response);
 	                break;
-	                
-            	
-	            case "/risco/store":
-	            	//RiscoController.store(request, response);
-	            	break;
-	            	
-	            case "/risco/agente/store":
-	            	// agente controller
-	            	break;
 	            	
 	            default:
 	                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Rota não encontrada");
