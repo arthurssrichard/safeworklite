@@ -1,6 +1,4 @@
 # Arquivos de IDE (Eclipse, IntelliJ, etc.)
-.classpath
-.project
 .settings/
 
 # Ignore diretórios de compilação e temporários
