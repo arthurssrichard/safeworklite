@@ -14,7 +14,6 @@ import dao.FuncionarioDAO;
 import model.Cargo;
 import model.EmpresaSetor;
 import model.Funcionario;
-import model.FuncionarioComCargo;
 
 public class FuncionarioController extends Controller {
 
@@ -75,7 +74,7 @@ public class FuncionarioController extends Controller {
 		int id_setor = (int) session.getAttribute("id");
 
 		CargoDAO.find(id_setor);
-		ArrayList<FuncionarioComCargo> lista = FuncionarioDAO.listar(id_setor);
+		ArrayList<Funcionario> lista = FuncionarioDAO.listar(id_setor);
 
 		// manda pra pagina da lista com os atributos
 		request.setAttribute("funcionarios", lista);

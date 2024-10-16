@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import model.Cargo;
 import model.EmpresaSetor;
 import model.Funcionario;
-import model.FuncionarioComCargo;
 
 public class FuncionarioDAO {
 	/* CRUD CREATE */
@@ -90,8 +89,8 @@ public class FuncionarioDAO {
 		return funcionario;
 	}
 	// LISTAR
-	public static ArrayList<FuncionarioComCargo> listar(int id_setor) {
-		ArrayList<FuncionarioComCargo> lista = new ArrayList<>();
+	public static ArrayList<Funcionario> listar(int id_setor) {
+		ArrayList<Funcionario> lista = new ArrayList<>();
 
 		String sql = "SELECT f.ID, f.nome, f.data_matricula, f.data_demissao, c.ID as cargo_id, c.nome as cargo_nome "
 				+ "FROM funcionarios f " 
@@ -113,7 +112,10 @@ public class FuncionarioDAO {
 				int cargoId = rs.getInt(5);
 				String cargoNome = rs.getString(6);
 				// popular o arraylist
-				lista.add(new FuncionarioComCargo(id, nome, dataMatricula, dataDemissao, cargoNome, cargoId));
+				Cargo cargo = new Cargo();
+				cargo.setNome(cargoNome);
+				cargo.setID(cargoId);
+				lista.add(new Funcionario(id, nome, dataMatricula, dataDemissao, cargo));
 			}
 			con.close();
 

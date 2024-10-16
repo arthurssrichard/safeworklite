@@ -21,8 +21,6 @@
 		</div>
 		<span>Não tem uma conta ainda? <a href="cadastro">Cadastre-se</a></span>
 	</form>
-	
-	
 </body>
 </html>
 
