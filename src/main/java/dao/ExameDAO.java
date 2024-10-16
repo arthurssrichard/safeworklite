@@ -15,7 +15,7 @@ public class ExameDAO {
 	
 	
 	/**
-	 * CRUD CREATE Adiciona um novo cargo à tabela 'exames' no banco de dados.
+	 * CRUD CREATE Adiciona um novo exame à tabela 'exames' no banco de dados.
 	 * 
 	 * @param tupla - Objeto Exame contendo as informações do exame a ser
 	 *              adicionado.
@@ -65,7 +65,67 @@ public class ExameDAO {
 			System.out.println(e);
 		}
 	}
-
-
+	
+	
+	
+	
+	/**
+	 * CRUD READ Retorna uma entidade 'Exame' buscada por seu ID (PK).
+	 * 
+	 * @param id - ID do exame a ser encontrado.
+	 * @return Exame - Retorna um objeto 'Exame' com infos encontrados,
+	 *         ou null se não for encontrado.
+	 */
+	public static Exame find(int id) {
+		String sql = "";
+		Exame exame = null;
+		
+		return exame;
+	}
+	
+	
+	
+	
+    /**
+     * CRUD READ
+     * Retorna todas as entidades 'Exame' cadastradas para um determinado setor.
+     * 
+     * @param id_setor - ID do setor cujos exames serão listados.
+     * @return ArrayList<Exame> - Retorna uma lista de todos os exames do setor, ou uma lista vazia se nenhum exame for encontrado.
+     */
+    public static ArrayList<Exame> listar(int id_setor){
+        ArrayList<Exame> lista = new ArrayList<>();
+        String sql = ""; // Query SQL
+        
+        return lista;
+    }
+    
+    
+    
+    
+    /**
+     * CRUD UPDATE
+     * Atualiza as informações de um exame no banco de dados com base no ID fornecido.
+     * 
+     * @param tupla - Objeto 'Exame' contendo as informações atualizadas do exame.
+     */
+    public static void atualizar(Exame tupla) {
+        String sql = "";
+        
+    }
+    
+    
+    
+    
+    /**
+     * CRUD DELETE
+     * Remove um exame da tabela 'Exame' com base no ID fornecido.
+     * 
+     * @param id - ID do exame a ser removido.
+     */
+    public static void remove(int id) {
+        String sql = "";
+        
+    }
 
 }

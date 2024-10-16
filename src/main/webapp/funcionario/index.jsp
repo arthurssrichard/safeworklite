@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.FuncionarioComCargo" %>
+<%@ page import="model.Funcionario" %>
 <%@ page import="model.Cargo" %>
 <%@ page import="java.util.ArrayList" %>
 <%
 @ SuppressWarnings ("unchecked")
-ArrayList<FuncionarioComCargo> lista = (ArrayList<FuncionarioComCargo>)request.getAttribute("funcionarios");
-
-
+ArrayList<Funcionario> lista = (ArrayList<Funcionario>)request.getAttribute("funcionarios");
 %>
 <!DOCTYPE html>
 <html>
@@ -31,12 +29,12 @@ ArrayList<FuncionarioComCargo> lista = (ArrayList<FuncionarioComCargo>)request.g
 				<tbody>
 					<%for(int i = 0; i< lista.size(); i++){%>
 						<tr>
-							<td><%=lista.get(i).getId()%></td>
-							<td><a href="edit?id=<%=lista.get(i).getId()%>"><%=lista.get(i).getNome()%></a></td>
-							<td><%=lista.get(i).getCargoNome()%></td>
+							<td><%=lista.get(i).getID()%></td>
+							<td><a href="edit?id=<%=lista.get(i).getID()%>"><%=lista.get(i).getNome()%></a></td>
+							<td><%=lista.get(i).getCargo().getNome()%></td>
 							<td>
 								<form action="delete" method="POST" style="display:inline">
-									<input type="hidden" name="id" value="<%=lista.get(i).getId()%>">
+									<input type="hidden" name="id" value="<%=lista.get(i).getID()%>">
 									<button type="submit" onclick="return confirm('Tem certeza que deseja excluir esse funcionário?')">Excluir</button>
 								</form>
 							</td>
