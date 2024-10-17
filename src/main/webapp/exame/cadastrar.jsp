@@ -4,11 +4,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Safe Work Lite</title>
+    <title>Safe Work Lite - Cadastro de Exame</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+    <div class="container mt-5">
+	    <a href="/SafeWorkManagerLite/exame">← Voltar</a>
+        <h2 class="mb-4">Cadastrar Exame</h2>
         <form action="store" method="POST" class="row g-3">
             <div class="col-12">
                 <label for="nome" class="form-label">Nome</label>
@@ -21,14 +23,20 @@
             </div>
             
             <div class="col-12">
-                <label for="demissao" class="form-label">Demissão</label>
-                <input type="checkbox" name="demissao">
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" name="demissao">
+                    <label class="form-check-label" for="demissao">Demissão</label>
+                </div>
                 
-                <label for="retorno-ao-trabalho" class="form-label ms-3">Retorno ao trabalho</label>
-                <input type="checkbox" name="retorno-ao-trabalho">
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" name="retorno-ao-trabalho">
+                    <label class="form-check-label" for="retorno-ao-trabalho">Retorno ao Trabalho</label>
+                </div>
                 
-                <label for="admissao" class="form-label ms-3">Admissao</label>
-                <input type="checkbox" name="admissao">
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" name="admissao">
+                    <label class="form-check-label" for="admissao">Admissão</label>
+                </div>
             </div>
             
             <div class="col-12">
@@ -54,26 +62,27 @@
                     </select>
                 </div>
                 
-			    <div id="valor-numerico" class="col-4">
-			        <div class="row g-2">
-			            <div class="col-6">
-			                <label class="form-label">Valor min. esperado</label>
-			                <input type="number" class="form-control" name="result-min-esperado" step="0.01" min="0" placeholder="Ex: 13">
-			            </div>
-			            <div class="col-6">
-			                <label class="form-label">Valor max. esperado</label>
-			                <input type="number" class="form-control" name="result-max-esperado" step="0.01" min="0" placeholder="Ex: 16">
-			            </div>
-			        </div>
-			    </div>
-			    
-		        <div id="valor-booleano" class="col-4 d-none">
-			        <label for="resultado-booleano-esperado" class="form-label">Resultado esperado</label>
-			        <select class="form-select" name="resultado-booleano-esperado">
-			            <option value="S">Sim</option>
-			            <option value="N">Não</option>
-			        </select>
-			    </div>
+                <div id="valor-numerico" class="col-4">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <label class="form-label">Valor min. esperado</label>
+                            <input type="number" class="form-control" name="result-min-esperado" step="0.01" min="0" placeholder="Ex: 13">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label">Valor max. esperado</label>
+                            <input type="number" class="form-control" name="result-max-esperado" step="0.01" min="0" placeholder="Ex: 16">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="valor-booleano" class="col-4 d-none">
+                    <label for="resultado-booleano-esperado" class="form-label">Resultado esperado</label>
+                    <select class="form-select" name="resultado-booleano-esperado">
+                        <option value="S">Sim</option>
+                        <option value="N">Não</option>
+                    </select>
+                </div>
+            </div>
             
             <div class="col-12">
                 <input type="submit" class="btn btn-primary" value="Cadastrar Exame">
