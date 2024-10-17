@@ -43,6 +43,19 @@ public class Exame {
 		this.resultadoNumericoEsperado = resultadoNumericoEsperado;
 		this.resultadoBooleanoEsperado = resultadoBooleanoEsperado;
 	}
+	
+	
+
+
+	public Exame(int id, String nome, String descricao, String resultadoNomeDado) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.resultadoNomeDado = resultadoNomeDado;
+	}
+
+
 
 
 	public int getId() {

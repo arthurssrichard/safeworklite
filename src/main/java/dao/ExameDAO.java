@@ -4,10 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import com.google.gson.Gson;
 
-import model.Cargo;
 import model.Exame;
 
 public class ExameDAO {
