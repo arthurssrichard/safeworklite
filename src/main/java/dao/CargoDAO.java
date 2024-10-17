@@ -18,7 +18,7 @@ public class CargoDAO {
 	 *              adicionado.
 	 */
 	public static void adicionar(Cargo tupla) {
-		String sql = "INSERT INTO Cargos (nome, descricao, ID_setor) VALUES (?,?, ?)";
+		String sql = "INSERT INTO cargos (nome, descricao, ID_setor) VALUES (?,?, ?)";
 		try {
 			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement pst = con.prepareStatement(sql);
@@ -44,7 +44,7 @@ public class CargoDAO {
 	 *         ou null se não for encontrado.
 	 */
 	public static Cargo find(int id) {
-		String sql = "SELECT nome, descricao FROM Cargos WHERE ID=?"; // Query SQL
+		String sql = "SELECT nome, descricao FROM cargos WHERE ID=?"; // Query SQL
 
 		Cargo cargo = null;
 		try {
@@ -81,7 +81,7 @@ public class CargoDAO {
     public static ArrayList<Cargo> listar(int id_setor){
         ArrayList<Cargo> lista = new ArrayList<>();
         
-        String sql = "SELECT ID, nome, descricao FROM Cargos WHERE ID_setor=?"; // Query SQL
+        String sql = "SELECT ID, nome, descricao FROM cargos WHERE ID_setor=?"; // Query SQL
         try {
             Connection con = DatabaseConnection.getConnection();
             PreparedStatement pst = con.prepareStatement(sql);
@@ -141,7 +141,7 @@ public class CargoDAO {
      * @param id - ID do cargo a ser removido.
      */
     public static void remove(int id) {
-        String sql = "DELETE FROM Cargos WHERE ID = ?";
+        String sql = "DELETE FROM cargos WHERE ID = ?";
         try {
             Connection con = DatabaseConnection.getConnection();
             PreparedStatement pst = con.prepareStatement(sql);

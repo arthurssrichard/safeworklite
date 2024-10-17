@@ -8,7 +8,7 @@ import model.EmpresaSetor;
 public class EmpresaSetorDAO {
 	/* CRUD CREATE */
 	public void adicionar(EmpresaSetor tupla){
-		String sql = "INSERT INTO Empresas_Setor (nome_empresa, nome_setor, senha) VALUES (?,?,?)";
+		String sql = "INSERT INTO empresas_setor (nome_empresa, nome_setor, senha) VALUES (?,?,?)";
 		try {
 			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement pst = con.prepareStatement(sql);
@@ -25,7 +25,7 @@ public class EmpresaSetorDAO {
 	
 	public static int validate(String empresa, String password) {
 		int status = -1;	
-		String sql = "SELECT * FROM Empresas_Setor WHERE nome_empresa=? AND senha=?";
+		String sql = "SELECT * FROM empresas_setor WHERE nome_empresa=? AND senha=?";
 		
 		try {
 			Connection con = DatabaseConnection.getConnection();
