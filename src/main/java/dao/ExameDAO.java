@@ -75,9 +75,60 @@ public class ExameDAO {
 	 *         ou null se não for encontrado.
 	 */
 	public static Exame find(int id) {
-		String sql = "";
+		String sql = "SELECT ID, nome, descricao, admissao, demissao, retorno_ao_trabalho, vezes_por_ano, "
+				+ "resultadoNomeDado, ID_setor, resultado_nome_dado, resultado_tipo_dado, resultado_numerico_esperado, "
+				+ "resultado_booleano_esperado FROM exames WHERE ID=?";
 		Exame exame = null;
-		
+		try {
+			Connection con = DatabaseConnection.getConnection();
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				String nome = rs.getString(2);
+				String descricao = rs.getString(3);
+				String admissao = rs.getString(4);
+				String demissao = rs.getString(5);
+				String retornoAoTrabalho = rs.getString(6);
+				int vezesPorAno = rs.getInt(7);
+				String resultadoNomeDado = rs.getString(8);
+				int idSetor = rs.getInt(9);
+				String resultadoTipoDado = rs.getString(10);
+				String resultadoNumericoEsperadoJson = rs.getString(11);
+				String resultadoBooleanoEsperado = rs.getString(12);
+				
+				
+				// Tratando o resultado booleano
+	            boolean resultBooleanoEsperado = "S".equals(resultadoBooleanoEsperado);
+	            boolean admissaoBoolean = "S".equals(admissao);
+	            boolean demissaoBoolean = "S".equals(demissao);
+	            boolean retornoAoTrabalhoBoolean = "S".equals(retornoAoTrabalho);
+	            
+	            
+	            // Decodificando o JSON para um vetor de inteiros
+	            Gson gson = new Gson();
+	            int[] resultadoNumericoEsperado = gson.fromJson(resultadoNumericoEsperadoJson, int[].class);
+	            
+
+				//int, string, string, boolean, boolean, boolean, int, string, string, int[], boolean
+				exame = new Exame(id, 
+								nome, 
+								descricao,
+								admissaoBoolean,
+								demissaoBoolean,
+								retornoAoTrabalhoBoolean,
+								vezesPorAno,
+								resultadoNomeDado,
+								idSetor,
+								resultadoTipoDado,
+								resultadoNumericoEsperado,
+								resultBooleanoEsperado);
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		return exame;
 	}
 	
