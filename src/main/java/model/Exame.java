@@ -14,10 +14,6 @@ public class Exame {
 	private String resultadoTipoDado;
 	private int[] resultadoNumericoEsperado;
 	private boolean resultadoBooleanoEsperado;
-	
-	
-	
-
 
 	public Exame(int idSetor, 
 				String nome, 
@@ -44,9 +40,6 @@ public class Exame {
 		this.resultadoBooleanoEsperado = resultadoBooleanoEsperado;
 	}
 	
-	
-
-
 	public Exame(int id, String nome, String descricao, String resultadoNomeDado) {
 		super();
 		this.id = id;
@@ -55,8 +48,12 @@ public class Exame {
 		this.resultadoNomeDado = resultadoNomeDado;
 	}
 
-
-
+	public Exame(int id, String nome, String resultadoNomeDado) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.resultadoNomeDado = resultadoNomeDado;
+	}
 
 	public int getId() {
 		return id;

@@ -15,6 +15,7 @@ public class Funcionario {
 		this.nome = nome;
 		this.dataMatricula = dataMatricula;
 	}
+	
 	public Funcionario(int iD, String nome, String dataMatricula, String dataDemissao, Cargo cargo) {
 		super();
 		this.ID = iD;
@@ -23,8 +24,6 @@ public class Funcionario {
 		this.dataDemissao = dataDemissao;
 		this.cargo = cargo;
 	}
-	
-	
 	
 	public Funcionario(String nome, String dataMatricula, Cargo cargo, EmpresaSetor setor) {
 		super();
@@ -43,6 +42,9 @@ public class Funcionario {
 		this.setor = setor;
 	}
 
+	public Funcionario() {
+		
+	}
 
 	public int getID() {
 		return ID;

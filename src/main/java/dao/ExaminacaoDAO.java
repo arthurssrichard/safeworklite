@@ -3,9 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
-import model.Cargo;
-import model.EmpresaSetor;
 import model.Exame;
 import model.Examinacao;
 import model.Funcionario;
@@ -119,5 +118,99 @@ public class ExaminacaoDAO {
 		return examinacao;
 	}
 	
-	
+	/**
+     * CRUD READ
+     * Retorna todas as entidades 'Examinacao' cadastradas para um determinado setor.
+     * 
+     * @param id_setor - ID do setor cujos exames serão listados.
+     * @return ArrayList<Examinacao> - Retorna uma lista de todos as examinacoes do setor, ou uma lista vazia se nenhuma examinacao for encontrada.
+     */
+    public static ArrayList<Examinacao> listar(int id_setor){
+        ArrayList<Examinacao> lista = new ArrayList<>();
+		String sql = "SELECT exmc.ID,  exmc.data_realizada,  exmc.tipo_dado, exmc.resultado_numerico, exmc.resultado_booleano, "
+				+ 	 "f.nome  AS funcionario_nome, f.ID AS funcionario_id, "
+				+ 	 "ex.ID, ex.nome AS exame_nome, ex.resultado_nome_dado AS exame_nome_dado "
+				+ "FROM examinacoes AS exmc "
+				+ "JOIN funcionarios AS f ON exmc.ID_funcionario = f.ID "
+				+ "JOIN exames AS ex ON exmc.ID_exame = ex.ID "
+				+ "WHERE ex.ID_setor = ?;";
+        
+		try {
+			Connection con = DatabaseConnection.getConnection();
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, id_setor);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				
+				//examinacao: 
+	            int examinacaoId = rs.getInt(1);
+	            String dataRealizada = rs.getString(2);
+	            String tipoDado = rs.getString(3);
+	            double resultadoNumerico = rs.getDouble(4);
+	            String resultadoBooleano = rs.getString(5); 
+	            
+	            boolean resultBooleano = false;
+	            if(tipoDado.equals("booleano")) { // converte de string (enum) para booleano
+	            	if(resultadoBooleano.equals("S")) {
+	            		resultBooleano = true;
+	            	}else {
+	            		resultBooleano = false;
+	            	}
+	            }
+	            
+	            //funcionario
+	            String funcionarioNome = rs.getString(6);
+	            int funcionarioId = rs.getInt(7);
+	            Funcionario funcionario = new Funcionario(); // instancia 
+	            funcionario.setID(funcionarioId);
+	            funcionario.setNome(funcionarioNome);
+	            
+	            // Exame
+	            int exameId = rs.getInt(8);
+	            String exameNome = rs.getString(9);
+	            String exameNomeDado = rs.getString(10);
+	            Exame exame = new Exame(exameId, exameNome, exameNomeDado);
+	            
+	            // Cria o objeto examinacao
+	            Examinacao examinacao = new Examinacao(funcionario, exame, dataRealizada, tipoDado, resultadoNumerico, resultBooleano);
+	            lista.add(examinacao);
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+        return lista;
+    }
+    
+    /**
+     * CRUD UPDATE
+     * Atualiza as informações de uma examinacao no banco de dados com base no ID fornecido.
+     * 
+     * @param tupla - Objeto 'Examinacao' contendo as informações atualizadas do exame.
+     */
+    public static void atualizar(Examinacao tupla) {
+        String sql = "UPDATE examinacoes SET ID_funcionario=?, ID_exame=?, data_realizada=?, tipo_dado=?, resultado_numerico=?, resultado_booleano=? WHERE ID=?";
+        try {
+        	String resultBooleano = tupla.getResultadoBooleano() ? "S" : "N"; 
+        	if(tupla.getTipoDado().equals("numerico")) {
+        		resultBooleano = null;
+        	}
+        	
+            Connection con = DatabaseConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, tupla.getFuncionario().getID());
+            pst.setInt(2, tupla.getExame().getId());
+            pst.setString(3, tupla.getDataRealizada());
+            pst.setString(4, tupla.getTipoDado()); // ('numerico', 'booleano')
+            pst.setDouble(5, tupla.getResultadoNumerico());
+            pst.setString(6, resultBooleano);
+            pst.setInt(7, tupla.getId());
+            
+            pst.executeUpdate();
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }

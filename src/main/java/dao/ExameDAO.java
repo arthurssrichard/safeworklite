@@ -112,18 +112,18 @@ public class ExameDAO {
 	            
 
 				//int, string, string, boolean, boolean, boolean, int, string, string, int[], boolean
-				exame = new Exame(id, 
-								nome, 
-								descricao,
-								admissaoBoolean,
-								demissaoBoolean,
-								retornoAoTrabalhoBoolean,
-								vezesPorAno,
-								resultadoNomeDado,
-								idSetor,
-								resultadoTipoDado,
-								resultadoNumericoEsperado,
-								resultBooleanoEsperado);
+				exame = new Exame(
+					id, 
+					nome, 
+					descricao,
+					admissaoBoolean,
+					demissaoBoolean,
+					retornoAoTrabalhoBoolean,
+					vezesPorAno,
+					resultadoNomeDado,
+					resultadoTipoDado,
+					resultadoNumericoEsperado,
+					resultBooleanoEsperado);
 			}
 			
 		} catch (Exception e) {
