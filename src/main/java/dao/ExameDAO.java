@@ -113,7 +113,7 @@ public class ExameDAO {
 
 				//int, string, string, boolean, boolean, boolean, int, string, string, int[], boolean
 				exame = new Exame(
-					id, 
+					idSetor, 
 					nome, 
 					descricao,
 					admissaoBoolean,
@@ -124,6 +124,8 @@ public class ExameDAO {
 					resultadoTipoDado,
 					resultadoNumericoEsperado,
 					resultBooleanoEsperado);
+				
+				exame.setIdSetor(idSetor);
 			}
 			
 		} catch (Exception e) {
@@ -140,11 +142,37 @@ public class ExameDAO {
      * Retorna todas as entidades 'Exame' cadastradas para um determinado setor.
      * 
      * @param id_setor - ID do setor cujos exames serão listados.
-     * @return ArrayList<Exame> - Retorna uma lista de todos os exames do setor, ou uma lista vazia se nenhum exame for encontrado.
+     * @return ArrayList<Exame> - Retorna uma lista de todos os exames do setor,
+     * 							ou uma lista vazia se nenhum exame for encontrado.
      */
     public static ArrayList<Exame> listar(int id_setor){
         ArrayList<Exame> lista = new ArrayList<>();
-        String sql = ""; // Query SQL
+        String sql = "SELECT ID, nome, descricao, vezes_por_ano, resultadoNomeDado FROM exames WHERE ID_setor=?"; // Query SQL
+        Exame exame = null;
+        
+        try {
+        	Connection con = DatabaseConnection.getConnection();
+        	PreparedStatement pst = con.prepareStatement(sql);
+        	pst.setInt(1, id_setor);
+        	ResultSet rs = pst.executeQuery();
+        	
+        	while(rs.next()) {
+        		int ID = rs.getInt(2);
+        		String nome = rs.getString(3);
+        		String descricao = rs.getString(4);
+        		int vezes_por_ano = rs.getInt(5);
+        		String resultadoNomeDado = rs.getString(6);
+        		
+        		 
+        		exame = new Exame(ID, nome, descricao, resultadoNomeDado);
+        		exame.setVezesPorAno(vezes_por_ano);
+        		lista.add(exame);
+        	}
+        	
+        } catch(Exception e){
+    		System.out.println(e);	
+        }
+        
         
         return lista;
     }
@@ -159,8 +187,41 @@ public class ExameDAO {
      * @param tupla - Objeto 'Exame' contendo as informações atualizadas do exame.
      */
     public static void atualizar(Exame tupla) {
-        String sql = "";
-        
+        String sql = "UPDATE exames SET nome=?, descricao=?, admissao=?, demissao=?, retorno_ao_trabalho=?, vezes_por_ano=?, resultado_nome_dado=?, resultado_tipo_dado=?, resultado_numerico_esperado=?, resultado_booleano_esperado=? WHERE ID=?";
+        try {
+        	String resultBooleano = tupla.getResultadoBooleanoEsperado() ? "S" : "N"; 
+        	if(tupla.getResultadoTipoDado().equals("numerico")) {
+        		resultBooleano = null;
+        	}
+        	String dataAdmissao = tupla.isAdmissao() ? "S" : "N";
+        	String dataDemissao = tupla.isDemissao()? "S" : "N";
+        	String retornoAoTrabalho = tupla.isRetornoAoTrabalho()? "S" : "N";
+        	String resultadoBooleanEsperado = tupla.getResultadoBooleanoEsperado() ? "S" : "N";
+        	
+    		int resultadoNumericoEsperado[] = tupla.getResultadoNumericoEsperado();
+    		Gson gson = new Gson();
+    		String resultNumericoEsperado = gson.toJson(resultadoNumericoEsperado);
+        	
+        	
+        	 Connection con = DatabaseConnection.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql);
+             
+             pst.setString(1, tupla.getNome());
+             pst.setString(2, tupla.getDescricao());
+             pst.setString(3, dataAdmissao);
+             pst.setString(4, dataDemissao);
+             pst.setString(5, retornoAoTrabalho);
+             pst.setInt(6, tupla.getVezesPorAno());
+             pst.setString(7, tupla.getResultadoNomeDado());
+             pst.setString(8, tupla.getResultadoTipoDado());
+             pst.setString(9, resultNumericoEsperado);
+             pst.setString(10, resultadoBooleanEsperado);
+             
+             pst.executeUpdate();
+             con.close();
+        }catch (Exception e) {
+			System.out.println(e);
+		}
     }
     
     
@@ -173,7 +234,18 @@ public class ExameDAO {
      * @param id - ID do exame a ser removido.
      */
     public static void remove(int id) {
-        String sql = "";
+        String sql = "DELETE FROM exames WHERE ID = ?";
+        
+        try {
+			Connection con = DatabaseConnection.getConnection();
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+			
+			pst.executeUpdate();
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
         
     }
 
