@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import Controller.CargoController;
 import Controller.EmpresaController;
 import Controller.ExameController;
+import Controller.ExaminacaoController;
 import Controller.FuncionarioController;
 
 @WebServlet(urlPatterns = {
@@ -37,6 +38,7 @@ import Controller.FuncionarioController;
 	    "/funcionario/edit",
 	    "/funcionario/update",
 	    "/funcionario/delete",
+	    "/funcionario/examinacoes",
 	    
 	    /* Exame */
 	    "/exame/", 
@@ -44,7 +46,15 @@ import Controller.FuncionarioController;
 	    "/exame/store",
 	    "/exame/edit",
 	    "/exame/update",
-	    "/exame/delete"
+	    "/exame/delete",
+	    
+	    /* Examinacao */
+	    "/examinacao/", 
+	    "/examinacao/cadastrar", 
+	    "/examinacao/store",
+	    "/examinacao/edit",
+	    "/examinacao/update",
+	    "/examinacao/delete"
 	})
 	public class Routes extends HttpServlet {
 	    private static final long serialVersionUID = 1L;
@@ -100,7 +110,23 @@ import Controller.FuncionarioController;
 	                break;
 	                
 	            case "/exame/edit":
-	            	//ExameController.edit(request, response);
+	            	ExameController.edit(request, response);
+	                break;
+	                
+	            case "/examinacao/":
+	                //ExaminacaoController.list(request, response);
+	                break;
+	                
+	            case "/examinacao/cadastrar":
+	            	ExaminacaoController.create(request, response);
+	                break;
+	                
+	            case "/examinacao/edit":
+	            	ExaminacaoController.edit(request, response);
+	                break;
+	                
+	            case "/funcionario/examinacoes":
+	            	ExaminacaoController.listFromFuncionario(request, response);
 	                break;
 	            	
 	            default:
@@ -152,11 +178,23 @@ import Controller.FuncionarioController;
 	                break;
 	                
 	            case "/exame/update":
-	            	//ExameController.update(request, response);
+	            	ExameController.update(request, response);
 	            	break;
 	                
 	            case "/exame/delete":
-	            	//ExameController.delete(request, response);
+	            	ExameController.delete(request, response);
+	                break;
+	                
+	            case "/examinacao/store":
+	                ExaminacaoController.store(request, response);
+	                break;
+	                
+	            case "/examinacao/update":
+	            	ExaminacaoController.update(request, response);
+	            	break;
+	                
+	            case "/examinacao/delete":
+	            	ExaminacaoController.delete(request, response);
 	                break;
 	            	
 	            default:

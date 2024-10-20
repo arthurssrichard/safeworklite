@@ -10,17 +10,15 @@ ArrayList<Exame> lista = (ArrayList<Exame>)request.getAttribute("exames");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SafeWorkLite - Exames</title>
+<title>SafeWorkLite - Examinacoes</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 </head>
 <body>
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>Exames</h1>
-            <a href="cadastrar" class="btn btn-primary">Novo Exame</a>
+            <h1>Examinacoes</h1>
         </div>
-
         <% if (lista == null || lista.isEmpty()) { %>
             <div class="alert alert-warning">Sem exames registrados</div>
         <% } else { %>
@@ -29,20 +27,22 @@ ArrayList<Exame> lista = (ArrayList<Exame>)request.getAttribute("exames");
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>	
-                        <th>Dado</th>	
+                        <th>Funcionário</th>
+                        <th>Data</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for (int i = 0; i < lista.size(); i++) { %>
                         <tr>
-                            <td><%= lista.get(i).getId() %></td>
-                            <td title="<%= lista.get(i).getDescricao() %>"><a href="edit?id=<%= lista.get(i).getId() %>" class="text-decoration-none"><%= lista.get(i).getNome() %></a></td>
-                            <td><%= lista.get(i).getResultadoNomeDado() %></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
                             <td>
                                 <form action="delete" method="POST" style="display:inline">
                                     <input type="hidden" name="id" value="<%= lista.get(i).getId() %>">
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esse exame?')">Excluir</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir essa examinacao?')">Excluir</button>
                                 </form>
                             </td>
                         </tr>

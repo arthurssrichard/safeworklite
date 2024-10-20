@@ -54,6 +54,8 @@ public class Exame {
 		this.nome = nome;
 		this.resultadoNomeDado = resultadoNomeDado;
 	}
+	
+	public Exame() {}
 
 	public int getId() {
 		return id;

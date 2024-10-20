@@ -93,8 +93,8 @@ public class ExaminacaoDAO {
 	            
 	            // Funcionario
 	            String funcionarioNome = rs.getString(6);
-	            int funcionarioId = rs.getInt(7);
-	            String funcionarioDataMatricula = rs.getString(8);
+	            String funcionarioDataMatricula = rs.getString(7);
+	            int funcionarioId = rs.getInt(8);
 	            Funcionario funcionario = new Funcionario(funcionarioId, funcionarioNome, funcionarioDataMatricula); // instancia 
 	            
 	            // Exame
@@ -130,10 +130,10 @@ public class ExaminacaoDAO {
 		String sql = "SELECT exmc.ID,  exmc.data_realizada,  exmc.tipo_dado, exmc.resultado_numerico, exmc.resultado_booleano, "
 				+ 	 "f.nome  AS funcionario_nome, f.ID AS funcionario_id, "
 				+ 	 "ex.ID, ex.nome AS exame_nome, ex.resultado_nome_dado AS exame_nome_dado "
-				+ "FROM examinacoes AS exmc "
-				+ "JOIN funcionarios AS f ON exmc.ID_funcionario = f.ID "
-				+ "JOIN exames AS ex ON exmc.ID_exame = ex.ID "
-				+ "WHERE ex.ID_setor = ?;";
+				+    "FROM examinacoes AS exmc "
+				+    "JOIN funcionarios AS f ON exmc.ID_funcionario = f.ID "
+				+    "JOIN exames AS ex ON exmc.ID_exame = ex.ID "
+				+    "WHERE ex.ID_setor = ?;";
         
 		try {
 			Connection con = DatabaseConnection.getConnection();
@@ -183,6 +183,78 @@ public class ExaminacaoDAO {
         return lista;
     }
     
+    
+    
+    
+	/**
+     * CRUD READ
+     * Retorna todas as entidades 'Examinacao' cadastradas para um determinado funcionário.
+     * 
+     * @param id_funcionario - ID do funcionario cujas examinacoes serão listados.
+     * @return ArrayList<Examinacao> - Retorna uma lista de todos as examinacoes do funcionario, ou uma lista vazia se nenhuma examinacao for encontrada.
+     */
+    public static ArrayList<Examinacao> listarFromFuncionario(int id_funcionario){
+        ArrayList<Examinacao> lista = new ArrayList<>();
+		String sql = "SELECT exmc.ID,  exmc.data_realizada,  exmc.tipo_dado, exmc.resultado_numerico, exmc.resultado_booleano, "
+				+ 	 "f.nome  AS funcionario_nome, f.ID AS funcionario_id, "
+				+ 	 "ex.ID, ex.nome AS exame_nome, ex.resultado_nome_dado AS exame_nome_dado " //nome e dado do exame, ex: (Hemograma, hemoglobina)
+				+    "FROM examinacoes AS exmc "
+				+    "JOIN funcionarios AS f ON exmc.ID_funcionario = f.ID "
+				+    "JOIN exames AS ex ON exmc.ID_exame = ex.ID "
+				+    "WHERE exmc.ID_funcionario = ?;";
+        
+		try {
+			Connection con = DatabaseConnection.getConnection();
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, id_funcionario);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				
+				//examinacao: 
+	            int examinacaoId = rs.getInt(1);
+	            String dataRealizada = rs.getString(2);
+	            String tipoDado = rs.getString(3);
+	            double resultadoNumerico = rs.getDouble(4);
+	            String resultadoBooleano = rs.getString(5); 
+	            
+	            boolean resultBooleano = false;
+	            if(tipoDado.equals("booleano")) { // converte de string (enum) para booleano
+	            	if(resultadoBooleano.equals("S")) {
+	            		resultBooleano = true;
+	            	}else {
+	            		resultBooleano = false;
+	            	}
+	            }
+	            
+	            //funcionario
+	            String funcionarioNome = rs.getString(6);
+	            int funcionarioId = rs.getInt(7);
+	            Funcionario funcionario = new Funcionario(); // instancia 
+	            funcionario.setID(funcionarioId);
+	            funcionario.setNome(funcionarioNome);
+	            
+	            // Exame
+	            int exameId = rs.getInt(8);
+	            String exameNome = rs.getString(9);
+	            String exameNomeDado = rs.getString(10);
+	            Exame exame = new Exame(exameId, exameNome, exameNomeDado);
+	            
+	            // Cria o objeto examinacao
+	            Examinacao examinacao = new Examinacao(funcionario, exame, dataRealizada, tipoDado, resultadoNumerico, resultBooleano);
+	            examinacao.setId(examinacaoId);
+	            lista.add(examinacao);
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+        return lista;
+    }
+    
+    
+    
+    
     /**
      * CRUD UPDATE
      * Atualiza as informações de uma examinacao no banco de dados com base no ID fornecido.
@@ -190,7 +262,7 @@ public class ExaminacaoDAO {
      * @param tupla - Objeto 'Examinacao' contendo as informações atualizadas do exame.
      */
     public static void atualizar(Examinacao tupla) {
-        String sql = "UPDATE examinacoes SET ID_funcionario=?, ID_exame=?, data_realizada=?, tipo_dado=?, resultado_numerico=?, resultado_booleano=? WHERE ID=?";
+        String sql = "UPDATE examinacoes SET ID_exame=?, data_realizada=?, tipo_dado=?, resultado_numerico=?, resultado_booleano=? WHERE ID=?";
         try {
         	String resultBooleano = tupla.getResultadoBooleano() ? "S" : "N"; 
         	if(tupla.getTipoDado().equals("numerico")) {
@@ -199,13 +271,12 @@ public class ExaminacaoDAO {
         	
             Connection con = DatabaseConnection.getConnection();
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setInt(1, tupla.getFuncionario().getID());
-            pst.setInt(2, tupla.getExame().getId());
-            pst.setString(3, tupla.getDataRealizada());
-            pst.setString(4, tupla.getTipoDado()); // ('numerico', 'booleano')
-            pst.setDouble(5, tupla.getResultadoNumerico());
-            pst.setString(6, resultBooleano);
-            pst.setInt(7, tupla.getId());
+            pst.setInt(1, tupla.getExame().getId());
+            pst.setString(2, tupla.getDataRealizada());
+            pst.setString(3, tupla.getTipoDado()); // ('numerico', 'booleano')
+            pst.setDouble(4, tupla.getResultadoNumerico());
+            pst.setString(5, resultBooleano);
+            pst.setInt(6, tupla.getId());
             
             pst.executeUpdate();
             con.close();
@@ -213,4 +284,21 @@ public class ExaminacaoDAO {
             System.out.println(e);
         }
     }
+    
+    
+    
+    
+	public static void remove(int id) {
+		String sql = "DELETE FROM examinacoes WHERE ID = ?";
+		try {
+			Connection con = DatabaseConnection.getConnection();
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+			
+			pst.executeUpdate();
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }

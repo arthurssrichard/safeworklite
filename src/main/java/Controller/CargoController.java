@@ -99,7 +99,7 @@ public class CargoController extends Controller {
 	public static void delete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		int id = Integer.parseInt(request.getParameter("id")); // passado pelo input hidden
+		int id = Integer.parseInt(request.getParameter("id")); 
 		CargoDAO.remove(id);
 		response.sendRedirect(request.getContextPath() + "/cargo"); // Manda para a página de lista
 	}

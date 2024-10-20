@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import model.Exame;
 
@@ -75,8 +77,8 @@ public class ExameDAO {
 	 *         ou null se não for encontrado.
 	 */
 	public static Exame find(int id) {
-		String sql = "SELECT ID, nome, descricao, admissao, demissao, retorno_ao_trabalho, vezes_por_ano, "
-				+ "resultadoNomeDado, ID_setor, resultado_nome_dado, resultado_tipo_dado, resultado_numerico_esperado, "
+		String sql = "SELECT nome, descricao, admissao, demissao, retorno_ao_trabalho, vezes_por_ano, "
+				+ "resultado_nome_dado, ID_setor, resultado_tipo_dado, resultado_numerico_esperado, "
 				+ "resultado_booleano_esperado FROM exames WHERE ID=?";
 		Exame exame = null;
 		try {
@@ -86,17 +88,17 @@ public class ExameDAO {
 			ResultSet rs = pst.executeQuery();
 			
 			if(rs.next()) {
-				String nome = rs.getString(2);
-				String descricao = rs.getString(3);
-				String admissao = rs.getString(4);
-				String demissao = rs.getString(5);
-				String retornoAoTrabalho = rs.getString(6);
-				int vezesPorAno = rs.getInt(7);
-				String resultadoNomeDado = rs.getString(8);
-				int idSetor = rs.getInt(9);
-				String resultadoTipoDado = rs.getString(10);
-				String resultadoNumericoEsperadoJson = rs.getString(11);
-				String resultadoBooleanoEsperado = rs.getString(12);
+				String nome = rs.getString(1);
+				String descricao = rs.getString(2);
+				String admissao = rs.getString(3);
+				String demissao = rs.getString(4);
+				String retornoAoTrabalho = rs.getString(5);
+				int vezesPorAno = rs.getInt(6);
+				String resultadoNomeDado = rs.getString(7);
+				int idSetor = rs.getInt(8);
+				String resultadoTipoDado = rs.getString(9);
+				String resultadoNumericoEsperadoJson = rs.getString(10);
+				String resultadoBooleanoEsperado = rs.getString(11);
 				
 				
 				// Tratando o resultado booleano
@@ -105,12 +107,15 @@ public class ExameDAO {
 	            boolean demissaoBoolean = "S".equals(demissao);
 	            boolean retornoAoTrabalhoBoolean = "S".equals(retornoAoTrabalho);
 	            
-	            
 	            // Decodificando o JSON para um vetor de inteiros
 	            Gson gson = new Gson();
-	            int[] resultadoNumericoEsperado = gson.fromJson(resultadoNumericoEsperadoJson, int[].class);
+	            int[] resultadoNumericoEsperado = new int[0];  // Inicializa como um array vazio
+	            if (resultadoNumericoEsperadoJson != null && !resultadoNumericoEsperadoJson.isEmpty()) {
+	                resultadoNumericoEsperado = gson.fromJson(resultadoNumericoEsperadoJson, int[].class);
+	            }
 	            
-
+	                
+	      
 				//int, string, string, boolean, boolean, boolean, int, string, string, int[], boolean
 				exame = new Exame(
 					idSetor, 
@@ -125,7 +130,7 @@ public class ExameDAO {
 					resultadoNumericoEsperado,
 					resultBooleanoEsperado);
 				
-				exame.setIdSetor(idSetor);
+				exame.setId(id);
 			}
 			
 		} catch (Exception e) {
@@ -147,7 +152,7 @@ public class ExameDAO {
      */
     public static ArrayList<Exame> listar(int id_setor){
         ArrayList<Exame> lista = new ArrayList<>();
-        String sql = "SELECT ID, nome, descricao, vezes_por_ano, resultadoNomeDado FROM exames WHERE ID_setor=?"; // Query SQL
+        String sql = "SELECT ID, nome, descricao, vezes_por_ano, resultado_nome_dado, resultado_tipo_dado FROM exames WHERE ID_setor=?"; // Query SQL
         Exame exame = null;
         
         try {
@@ -157,15 +162,18 @@ public class ExameDAO {
         	ResultSet rs = pst.executeQuery();
         	
         	while(rs.next()) {
-        		int ID = rs.getInt(2);
-        		String nome = rs.getString(3);
-        		String descricao = rs.getString(4);
-        		int vezes_por_ano = rs.getInt(5);
-        		String resultadoNomeDado = rs.getString(6);
+        		int ID = rs.getInt(1);
+        		String nome = rs.getString(2);
+        		String descricao = rs.getString(3);
+        		int vezes_por_ano = rs.getInt(4);
+        		String resultadoNomeDado = rs.getString(5);
+        		String resultadoTipoDado = rs.getString(6);
         		
         		 
         		exame = new Exame(ID, nome, descricao, resultadoNomeDado);
         		exame.setVezesPorAno(vezes_por_ano);
+        		exame.setResultadoTipoDado(resultadoTipoDado);
+        		
         		lista.add(exame);
         	}
         	
@@ -216,6 +224,7 @@ public class ExameDAO {
              pst.setString(8, tupla.getResultadoTipoDado());
              pst.setString(9, resultNumericoEsperado);
              pst.setString(10, resultadoBooleanEsperado);
+             pst.setInt(11, tupla.getId()); //WHERE
              
              pst.executeUpdate();
              con.close();

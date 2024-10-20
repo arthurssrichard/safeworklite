@@ -20,7 +20,8 @@ public class FuncionarioController extends Controller {
 	/* Método de levar para a view de cadastro */
 	public static void create(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
+		
 		// Pega o setor setor pelo id salvo na seção
 		HttpSession session = request.getSession();
 		int id_setor = (int) session.getAttribute("id");
@@ -37,6 +38,7 @@ public class FuncionarioController extends Controller {
 	/* Método que recebe os dados preenchidos no formulário e guarda no banco de dados */
 	public static void store(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 
 		// Caso um espertalhão vá no inspecionar e tire o "required" do input
 		if(request.getParameter("nome") == "" || request.getParameter("data-matricula") == ""){
@@ -44,7 +46,7 @@ public class FuncionarioController extends Controller {
 			System.out.println("Erro store Funcionario: Dados não fornecidos corretamente");
 			return;
 		}
-		
+
 		// Monta atributo "setor" que o funcionario pertence
 		HttpSession session = request.getSession();
 		int id_setor = (int) session.getAttribute("id");
@@ -69,7 +71,8 @@ public class FuncionarioController extends Controller {
 	/* Método de levar para a view de lista de funcionários, passando um arraylist de objetos */
 	public static void list(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = request.getSession();
 		int id_setor = (int) session.getAttribute("id");
 
@@ -84,7 +87,8 @@ public class FuncionarioController extends Controller {
 
 	public static void edit(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
+		
 		int id = Integer.parseInt(request.getParameter("id"));// Usa getParameter para capturar o id da query string
 
 		HttpSession session = request.getSession();
@@ -101,7 +105,8 @@ public class FuncionarioController extends Controller {
 
 	public static void update(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
+		
 		// Monta atributo "setor" que o funcionario pertence
 		HttpSession session = request.getSession();
 		int id_setor = (int) session.getAttribute("id");

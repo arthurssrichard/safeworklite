@@ -36,25 +36,6 @@ CREATE TABLE `cargos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `cargos_exames`
---
-
-DROP TABLE IF EXISTS `cargos_exames`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cargos_exames` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_cargo` int(11) DEFAULT NULL,
-  `ID_exame` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `ID_cargo` (`ID_cargo`),
-  KEY `ID_exame` (`ID_exame`),
-  CONSTRAINT `Cargos_Exames_ibfk_1` FOREIGN KEY (`ID_cargo`) REFERENCES `cargos` (`ID`) ON DELETE CASCADE,
-  CONSTRAINT `Cargos_Exames_ibfk_2` FOREIGN KEY (`ID_exame`) REFERENCES `exames` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `empresas_setor`
 --
 

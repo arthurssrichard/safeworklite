@@ -31,6 +31,7 @@ ArrayList<Funcionario> lista = (ArrayList<Funcionario>) request.getAttribute("fu
                         <th>Nome</th>
                         <th>Cargo</th>
                         <th>Ações</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,10 @@ ArrayList<Funcionario> lista = (ArrayList<Funcionario>) request.getAttribute("fu
                                     <input type="hidden" name="id" value="<%= lista.get(i).getID() %>">
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esse funcionário?')">Excluir</button>
                                 </form>
+                            </td>
+                            <td>
+                            	<a href="/SafeWorkManagerLite/examinacao/cadastrar?idFuncionario=<%=lista.get(i).getID()%>">Realizar Exame</a>
+                            	<a href="/SafeWorkManagerLite/funcionario/examinacoes?id-funcionario=<%=lista.get(i).getID()%>">Ver exames</a>
                             </td>
                         </tr>
                     <% } %>

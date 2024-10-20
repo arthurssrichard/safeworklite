@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class DatabaseConnection {
 	// lembrar de adicionar o driver amamanha
 	private static final String driver = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/safeworklite?useTimezone=true&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/safeworklite?useTimezone=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8";
     private static final String USER = "root";
     private static final String PASSWORD = "";
     

@@ -14,3 +14,6 @@ function toggleDado() {
         valorBooleano.style.display = "block";
     }
 }
+
+
+//

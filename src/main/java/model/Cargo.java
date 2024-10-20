@@ -1,12 +1,12 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Cargo {
 	private int ID;
 	private String nome;
 	private String descricao;
 	private EmpresaSetor setor;
-	
-	
 	public Cargo() {
 		
 	}
