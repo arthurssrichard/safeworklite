@@ -18,8 +18,11 @@ public class DashboardController {
 
 	public static void show(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Pega o setor setor pelo id salvo na seção
+		HttpSession session = request.getSession();
+		int id_setor = (int) session.getAttribute("id");
 		
-		List<Map<String, Object>> topFuncionarios = DashboardDAO.topFuncionariosForaDoPadrao();
+		List<Map<String, Object>> topFuncionarios = DashboardDAO.topFuncionariosForaDoPadrao(id_setor);
 		request.setAttribute("topFuncionarios", topFuncionarios);
 		
 		Map<String, Integer> splash = DashboardDAO.splash();

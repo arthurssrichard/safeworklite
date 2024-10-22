@@ -18,7 +18,7 @@ public class DashboardDAO {
 	 * @param id_setor - ID do setor cujos exames serão analisados.
 	 * @return Map<String, Integer> - Retorna uma lista com a quantidade de exames inadequados por cargo.
 	 */
-	public static List<Map<String, Object>> quantExamesInadequadosPorCargo(int id_setor) {
+	public static List<Map<String, Object>> quantExamesInadequadosPorCargo(int idSetor) {
 	    List<Map<String, Object>> lista = new ArrayList<>();
 
 	    String sql = "SELECT cargos.nome AS cargo_nome, COUNT(exmc.ID) AS quantidade_inadequada "
@@ -39,7 +39,7 @@ public class DashboardDAO {
 	    try {
 	        Connection con = DatabaseConnection.getConnection();
 	        PreparedStatement pst = con.prepareStatement(sql);
-	        pst.setInt(1, id_setor);
+	        pst.setInt(1, idSetor);
 	        ResultSet rs = pst.executeQuery();
 
 	        while (rs.next()) {
@@ -59,7 +59,7 @@ public class DashboardDAO {
 	}
 
 	
-	public static List<Map<String, Object>> topFuncionariosForaDoPadrao(){
+	public static List<Map<String, Object>> topFuncionariosForaDoPadrao(int idSetor){
 		List<Map<String, Object>> lista = new ArrayList<>();
 		String sql = "SELECT "
 		           + "funcionarios.nome AS funcionario_nome, funcionarios.ID AS funcionario_ID, funcionarios.data_matricula AS funcionario_data_matricula, "
@@ -70,6 +70,7 @@ public class DashboardDAO {
 		           + "WHERE (ex.resultado_tipo_dado = 'numerico' AND (exmc.resultado_numerico < JSON_EXTRACT(ex.resultado_numerico_esperado, '$[0]') "
 		           + "OR exmc.resultado_numerico > JSON_EXTRACT(ex.resultado_numerico_esperado, '$[1]'))) "
 		           + "OR (ex.resultado_tipo_dado = 'booleano' AND exmc.resultado_booleano != ex.resultado_booleano_esperado) "
+		           + "AND funcionarios.ID_setor = ?"
 		           + "GROUP BY funcionarios.nome, funcionarios.ID, funcionarios.data_matricula "
 		           + "ORDER BY exames_fora_padrao DESC "
 		           + "LIMIT 5;";
@@ -77,11 +78,11 @@ public class DashboardDAO {
 	    try {
 	        Connection con = DatabaseConnection.getConnection();
 	        PreparedStatement pst = con.prepareStatement(sql); 
+	        pst.setInt(1, idSetor);
 	        ResultSet rs = pst.executeQuery();
 	        
 	        while (rs.next()) {	            
 	            Map<String, Object> map = new HashMap<>();
-	            
 	            
 	            String nome = rs.getString(1);
 	            int id = rs.getInt(2);
