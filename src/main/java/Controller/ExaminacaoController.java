@@ -39,12 +39,7 @@ public class ExaminacaoController extends Controller{
 		RequestDispatcher rd = request.getRequestDispatcher("cadastrar.jsp");
 		rd.forward(request, response);
 	}
-	
-	
-	public static void list(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-	}
-	
+		
 	
 	public static void listFromFuncionario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -56,6 +51,7 @@ public class ExaminacaoController extends Controller{
 		ArrayList<Examinacao> lista = ExaminacaoDAO.listarFromFuncionario(idFuncionario);
 		
 		request.setAttribute("examinacoes", lista);
+		request.setAttribute("funcionario", funcionario);
 		RequestDispatcher rd = request.getRequestDispatcher("examinacoes.jsp");
 		rd.forward(request, response);
 	}
@@ -86,7 +82,7 @@ public class ExaminacaoController extends Controller{
 		
 		ExaminacaoDAO.adicionar(examinacao);
 		
-		response.sendRedirect(request.getContextPath() + "/examinacao");
+		response.sendRedirect(request.getContextPath() + "/funcionario/examinacoes?id-funcionario="+idFuncionario);
 	}
 	
 	public static void edit(HttpServletRequest request, HttpServletResponse response)

@@ -40,7 +40,7 @@ public class CargoController extends Controller {
 
 		// Cadastra no banco e manda o usuário pra pagina de lista
 		CargoDAO.adicionar(cargo);
-		response.sendRedirect(request.getContextPath() + "/cargo");
+		response.sendRedirect(request.getContextPath() + "/cargo/");
 	}
 
 	
@@ -90,7 +90,7 @@ public class CargoController extends Controller {
 
 		// Atualiza no banco e manda o usuário pra pagina de lista
 		CargoDAO.atualizar(cargo);
-		response.sendRedirect(request.getContextPath() + "/cargo");
+		response.sendRedirect(request.getContextPath() + "/cargo/");
 	}
 
 	
@@ -101,6 +101,6 @@ public class CargoController extends Controller {
 		
 		int id = Integer.parseInt(request.getParameter("id")); 
 		CargoDAO.remove(id);
-		response.sendRedirect(request.getContextPath() + "/cargo"); // Manda para a página de lista
+		response.sendRedirect(request.getContextPath() + "/cargo/"); // Manda para a página de lista
 	}
 }

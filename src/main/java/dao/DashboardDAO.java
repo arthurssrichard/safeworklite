@@ -61,19 +61,20 @@ public class DashboardDAO {
 	
 	public static List<Map<String, Object>> topFuncionariosForaDoPadrao(int idSetor){
 		List<Map<String, Object>> lista = new ArrayList<>();
-		String sql = "SELECT "
-		           + "funcionarios.nome AS funcionario_nome, funcionarios.ID AS funcionario_ID, funcionarios.data_matricula AS funcionario_data_matricula, "
-		           + "COUNT(exmc.ID) AS exames_fora_padrao "
-		           + "FROM funcionarios "
-		           + "JOIN examinacoes AS exmc ON exmc.ID_funcionario = funcionarios.ID "
-		           + "JOIN exames AS ex ON ex.ID = exmc.ID_exame "
-		           + "WHERE (ex.resultado_tipo_dado = 'numerico' AND (exmc.resultado_numerico < JSON_EXTRACT(ex.resultado_numerico_esperado, '$[0]') "
-		           + "OR exmc.resultado_numerico > JSON_EXTRACT(ex.resultado_numerico_esperado, '$[1]'))) "
-		           + "OR (ex.resultado_tipo_dado = 'booleano' AND exmc.resultado_booleano != ex.resultado_booleano_esperado) "
-		           + "AND funcionarios.ID_setor = ?"
-		           + "GROUP BY funcionarios.nome, funcionarios.ID, funcionarios.data_matricula "
-		           + "ORDER BY exames_fora_padrao DESC "
-		           + "LIMIT 5;";
+	    String sql = "SELECT "
+	               + "funcionarios.nome AS funcionario_nome, funcionarios.ID AS funcionario_ID, funcionarios.data_matricula AS funcionario_data_matricula, "
+	               + "COUNT(exmc.ID) AS exames_fora_padrao "
+	               + "FROM funcionarios "
+	               + "JOIN examinacoes AS exmc ON exmc.ID_funcionario = funcionarios.ID "
+	               + "JOIN exames AS ex ON ex.ID = exmc.ID_exame "
+	               + "WHERE funcionarios.ID_setor = ? AND ( "
+	               + "(ex.resultado_tipo_dado = 'numerico' AND (exmc.resultado_numerico < JSON_EXTRACT(ex.resultado_numerico_esperado, '$[0]') "
+	               + "OR exmc.resultado_numerico > JSON_EXTRACT(ex.resultado_numerico_esperado, '$[1]'))) "
+	               + "OR (ex.resultado_tipo_dado = 'booleano' AND exmc.resultado_booleano != ex.resultado_booleano_esperado) "
+	               + ") "
+	               + "GROUP BY funcionarios.nome, funcionarios.ID, funcionarios.data_matricula "
+	               + "ORDER BY exames_fora_padrao DESC "
+	               + "LIMIT 5;";
 
 	    try {
 	        Connection con = DatabaseConnection.getConnection();

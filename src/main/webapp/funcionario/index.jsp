@@ -17,8 +17,10 @@ ArrayList<Funcionario> lista = (ArrayList<Funcionario>) request.getAttribute("fu
 <jsp:include page="../utils/header.jsp"/>
 <body>
     <div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="mb-4">Funcionários</h1>
         <a href="cadastrar" class="btn btn-primary mb-3">Novo Funcionário</a>
+    </div>
         
         <% if (lista == null || lista.isEmpty()) { %>
             <div class="alert alert-warning" role="alert">
@@ -26,7 +28,7 @@ ArrayList<Funcionario> lista = (ArrayList<Funcionario>) request.getAttribute("fu
             </div>
         <% } else { %>
             <table class="table table-striped">
-                <thead class="table-dark">
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
@@ -48,8 +50,8 @@ ArrayList<Funcionario> lista = (ArrayList<Funcionario>) request.getAttribute("fu
                                 </form>
                             </td>
                             <td>
-                            	<a href="/SafeWorkManagerLite/examinacao/cadastrar?idFuncionario=<%=lista.get(i).getID()%>">Realizar Exame</a>
-                            	<a href="/SafeWorkManagerLite/funcionario/examinacoes?id-funcionario=<%=lista.get(i).getID()%>">Ver exames</a>
+                            	<a href="/SafeWorkManagerLite/examinacao/cadastrar?idFuncionario=<%=lista.get(i).getID()%>" class="btn btn-success">Realizar Exame</a>
+                            	<a href="/SafeWorkManagerLite/funcionario/examinacoes?id-funcionario=<%=lista.get(i).getID()%>" class="btn btn-info">Ver exames</a>
                             </td>
                         </tr>
                     <% } %>

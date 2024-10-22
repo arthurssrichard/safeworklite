@@ -62,7 +62,7 @@
         <section id="top-funcionarios" class="table-responsive">
             <h3 class="mb-3">Top 5 Funcionários Fora do Padrão</h3>
             <table class="table table-bordered table-hover">
-                <thead class="table-dark">
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>

@@ -16,6 +16,8 @@ import Controller.ExaminacaoController;
 import Controller.FuncionarioController;
 
 @WebServlet(urlPatterns = {
+		
+		"/",
 		/* Login e autenticação */
 		"/login", "/auth",
 
@@ -54,6 +56,10 @@ public class Routes extends HttpServlet {
 
 		/* ROTAS */
 		switch (action) {
+		case "/":
+			EmpresaController.iniciar(request, response);
+			break;
+			
 		case "/login":
 			response.sendRedirect("login.jsp");
 			break;

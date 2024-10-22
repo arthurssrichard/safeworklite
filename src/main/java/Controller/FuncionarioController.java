@@ -63,7 +63,7 @@ public class FuncionarioController extends Controller {
 
 		// Cadastra e redireciona para a lista de funcionários
 		FuncionarioDAO.adicionar(funcionario);
-		response.sendRedirect(request.getContextPath() + "/funcionario");
+		response.sendRedirect(request.getContextPath() + "/funcionario/");
 	}
 
 	/* Método de levar para a view de lista de funcionários, passando um arraylist de objetos */
@@ -123,7 +123,7 @@ public class FuncionarioController extends Controller {
 		
 		// Atualiza e redireciona para a lista de funcionários
 		FuncionarioDAO.atualizar(funcionario);
-		response.sendRedirect(request.getContextPath() + "/funcionario");
+		response.sendRedirect(request.getContextPath() + "/funcionario/");
 	}
 
 	public static void delete(HttpServletRequest request, HttpServletResponse response)
@@ -131,6 +131,6 @@ public class FuncionarioController extends Controller {
 
 		int id = Integer.parseInt(request.getParameter("id")); // passado pelo input hidden
 		FuncionarioDAO.remove(id);
-		response.sendRedirect(request.getContextPath() + "/funcionario");
+		response.sendRedirect(request.getContextPath() + "/funcionario/");
 	}
 }

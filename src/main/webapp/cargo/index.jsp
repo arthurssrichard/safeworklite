@@ -25,7 +25,7 @@ ArrayList<Cargo> lista = (ArrayList<Cargo>)request.getAttribute("cargos");
             <div class="alert alert-warning">Sem cargos registrados</div>
         <% } else { %>
             <table class="table table-striped">
-                <thead class="thead-dark">
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>

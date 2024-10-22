@@ -89,7 +89,7 @@ public class ExameController extends Controller{
 		
 		
 		
-		response.sendRedirect(request.getContextPath() + "/exame");
+		response.sendRedirect(request.getContextPath() + "/exame/");
 	}
 	
 	public static void edit(HttpServletRequest request, HttpServletResponse response)
@@ -156,7 +156,7 @@ public class ExameController extends Controller{
 		exame.setId(id);
 		ExameDAO.atualizar(exame);
 		
-		response.sendRedirect(request.getContextPath() + "/exame");
+		response.sendRedirect(request.getContextPath() + "/exame/");
 	}
 	
 	public static void delete(HttpServletRequest request, HttpServletResponse response)
@@ -164,6 +164,6 @@ public class ExameController extends Controller{
 
 		int id = Integer.parseInt(request.getParameter("id")); // passado pelo input hidden
 		ExameDAO.remove(id);
-		response.sendRedirect(request.getContextPath() + "/exame");
+		response.sendRedirect(request.getContextPath() + "/exame/");
 	}
 }
