@@ -13,6 +13,8 @@
 <meta charset="UTF-8">
 <title>SafeWorkLite - Nova Examinação</title>
 </head>
+<jsp:include page="../utils/header.jsp"/>
+
 <body>
 <h1>Cadastrar examinacão</h1>
 <h3>Funcionário: <%=funcionario.getNome()%></h3>

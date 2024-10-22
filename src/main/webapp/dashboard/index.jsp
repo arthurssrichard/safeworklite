@@ -6,20 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Safe Work Lite - Dashboard</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
+<jsp:include page="../utils/header.jsp"/>
 <body>
-	<header>
-		<nav>
-			<ul>
-				<li><a href="/SafeWorkManagerLite/login">Login</a>
-				<li><a href="/SafeWorkManagerLite/cargo">Cargos</a>
-				<li><a href="/SafeWorkManagerLite/funcionario">Funcionários</a>
-				<li><a href="/SafeWorkManagerLite/exame">Exames</a>
-				<li><a href="/SafeWorkManagerLite/examinacoes">Examinacoes</a>
-				<li><a href="/dashboard/">Dashboard</a>
-			</ul>
-		</nav>
-	</header>
 	<h1>Bem vindo!</h1>
 	<%
 		if(session != null && session.getAttribute("id") != null){

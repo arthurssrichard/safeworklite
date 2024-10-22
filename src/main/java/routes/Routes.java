@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Controller.CargoController;
+import Controller.DashboardController;
 import Controller.EmpresaController;
 import Controller.ExameController;
 import Controller.ExaminacaoController;
@@ -54,7 +55,9 @@ import Controller.FuncionarioController;
 	    "/examinacao/store",
 	    "/examinacao/edit",
 	    "/examinacao/update",
-	    "/examinacao/delete"
+	    "/examinacao/delete",
+	    
+	    "/dashboard/"
 	})
 	public class Routes extends HttpServlet {
 	    private static final long serialVersionUID = 1L;
@@ -127,6 +130,10 @@ import Controller.FuncionarioController;
 	                
 	            case "/funcionario/examinacoes":
 	            	ExaminacaoController.listFromFuncionario(request, response);
+	                break;
+	                
+	            case "/dashboard/":
+	            	DashboardController.show(request, response);
 	                break;
 	            	
 	            default:

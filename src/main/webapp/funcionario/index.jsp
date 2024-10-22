@@ -14,6 +14,7 @@ ArrayList<Funcionario> lista = (ArrayList<Funcionario>) request.getAttribute("fu
     <title>Safe Work Lite - Funcionários</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
+<jsp:include page="../utils/header.jsp"/>
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Funcionários</h1>

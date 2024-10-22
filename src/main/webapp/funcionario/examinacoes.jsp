@@ -14,6 +14,7 @@
 <meta charset="UTF-8">
 <title>SFL - Fulano: Examinações</title>
 </head>
+<jsp:include page="../utils/header.jsp"/>
 <body>
 	        <% if (lista == null || lista.isEmpty()) { %>
             <div class="alert alert-warning" role="alert">
