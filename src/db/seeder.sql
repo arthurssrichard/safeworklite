@@ -26,15 +26,6 @@ INSERT INTO `cargos` VALUES (1,'Operador de maquina','opera maquina',4),(2,'fabr
 UNLOCK TABLES;
 
 --
--- Dumping data for table `cargos_exames`
---
-
-LOCK TABLES `cargos_exames` WRITE;
-/*!40000 ALTER TABLE `cargos_exames` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cargos_exames` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping data for table `empresas_setor`
 --
 
