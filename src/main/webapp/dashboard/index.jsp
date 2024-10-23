@@ -11,10 +11,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Safe Work Lite - Dashboard</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<link rel="stylesheet" href="/SafeWorkManagerLite/css/styles.css">
+    <meta charset="UTF-8">
+    <title>Safe Work Lite - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/SafeWorkManagerLite/css/styles.css">
+    <style>
+        .separator {
+            border-top: 1px solid #c0c0c0; /* Linha suave com cor cinza clara */
+            margin: 20px 0; /* Espaçamento vertical */
+        }
+    </style>
 </head>
 <body>
     <jsp:include page="../utils/header.jsp"/>
@@ -27,42 +33,53 @@
             %>!</h1>
         </section>
         
-        <section id="total-registros" class="text-center mb-4">
-            <h2>Sistema de Gestão</h2>
-            <h3>Total de Registros Existentes</h3>
-            <div class="registro-sistema border rounded p-3">
-                <div class="row">
-                    <div class="col-md-6">1 - Setores: <strong><%= splash.get("empresas_setor") %></strong></div>
-                    <div class="col-md-6">2 - Cargos: <strong><%= splash.get("cargos") %></strong></div>
-                    <div class="col-md-6">3 - Funcionários: <strong><%= splash.get("funcionarios") %></strong></div>
-                    <div class="col-md-6">4 - Exames: <strong><%= splash.get("exames") %></strong></div>
-                    <div class="col-md-6">5 - Examinacões: <strong><%= splash.get("examinacoes") %></strong></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="criadores" class="text-center mt-4">
-            <div class="criadores">
-                <h4>Criado por:</h4>
-                <p>Arthur Salles Soares Richard</p>
-                <p>Matheus Andrade Rangel</p>
-                <p>Willian Alves Freitas Foca</p>
-            </div>
-            <div class="disciplina mt-3">
-                <h4>Disciplina: Banco de Dados</h4>
-                <p>2024/2</p>
-                <p>Professor: Howard Roatti</p>
-            </div>
+        <section id="total-registros" class="text-start mb-4 mt-5">
+            <h2>Total de Registros Existentes</h2>
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Registros</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-light">
+                        <td>Setores</td>
+                        <td><strong><%= splash.get("empresas_setor") %></strong></td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td>Cargos</td>
+                        <td><strong><%= splash.get("cargos") %></strong></td>
+                    </tr>
+                    <tr class="table-light">
+                        <td>Funcionários</td>
+                        <td><strong><%= splash.get("funcionarios") %></strong></td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <td>Exames</td>
+                        <td><strong><%= splash.get("exames") %></strong></td>
+                    </tr>
+                    <tr class="table-light">
+                        <td>Examinacões</td>
+                        <td><strong><%= splash.get("examinacoes") %></strong></td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
         
-        <section id="grafico" class="mb-5">
+        <div class="separator"></div> <!-- Linha de separação -->
+
+        <section id="grafico" class="mb-5 mt-5">
+            <h3>Quantidade de Examinacões Inadequadas</h3>
             <canvas id="myChart" width="400" height="200"></canvas>
         </section>
-        
+
+        <div class="separator"></div> <!-- Linha de separação -->
+
         <section id="top-funcionarios" class="table-responsive">
             <h3 class="mb-3">Top 5 Funcionários Fora do Padrão</h3>
             <table class="table table-bordered table-hover">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
@@ -72,7 +89,7 @@
                 </thead>
                 <tbody>
                     <%
-                        if (topFuncionarios != null) {
+                        if (topFuncionarios != null && !topFuncionarios.isEmpty()) {
                             for (Map<String, Object> item : topFuncionarios) {
                                 Funcionario funcionario = (Funcionario) item.get("funcionario");
                                 int quantExamesForaDoPadrao = (Integer) item.get("quantExamesForaDoPadrao");
@@ -97,41 +114,58 @@
             </table>
         </section>
     </div>
-</body>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    // Faz a requisição dos dados via AJAX
-    fetch('/SafeWorkManagerLite/dashboard/quantExamesInadequadosCargo')
-        .then(response => response.json())
-        .then(data => {
-            // Cria arrays para os dados do gráfico
-            const labels = data.map(item => item.cargo);
-            const quantities = data.map(item => item.quantidade_inadequada);
+<footer class="bg-light text-center text-lg-start mt-5">
+    <div class="container p-4 d-flex justify-content-between">
+        <div class="text-left">
+            <h4>Criado por:</h4>
+            <p>Arthur Salles Soares Richard</p>
+            <p>Matheus Andrade Rangel</p>
+            <p>Willian Alves Freitas Foca</p>
+        </div>
+        <div class="text-right">
+            <h4>Disciplina: Banco de Dados</h4>
+            <p>2024/2</p>
+            <p>Professor: Howard Roatti</p>
+        </div>
+    </div>
+</footer>
 
-            // Configura o Chart.js
-            const ctx = document.getElementById('myChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Quantidade de Examinacoes Inadequadas',
-                        data: quantities,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Faz a requisição dos dados via AJAX para o gráfico de examinacões inadequadas
+        fetch('/SafeWorkManagerLite/dashboard/quantExamesInadequadosCargo')
+            .then(response => response.json())
+            .then(data => {
+                // Cria arrays para os dados do gráfico
+                const labels = data.map(item => item.cargo);
+                const quantities = data.map(item => item.quantidade_inadequada);
+
+                // Configura o Chart.js
+                const ctx = document.getElementById('myChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Quantidade de Examinacoes Inadequadas',
+                            data: quantities,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
                         }
                     }
-                }
-            });
-        })
-        .catch(error => console.error('Erro ao buscar dados:', error));
-</script>
+                });
+            })
+            .catch(error => console.error('Erro ao buscar dados:', error));
+    </script>
+</body>
 </html>
