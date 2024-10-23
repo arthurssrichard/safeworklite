@@ -72,7 +72,7 @@ mvn clean install
 ### 6. Executar o Script de Configuração do Banco de Dados
 
 1. Vá até o diretório onde se encontra o script `setup.sh`.
-2. Execute o script para criar as tabelas no banco de dados e preencher alguns dados:
+2. Execute o script para criar as tabelas no banco de dados e preencher alguns dados: (src/db/setup.sh)
 
    ```bash
    ./setup.sh
