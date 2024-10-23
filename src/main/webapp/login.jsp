@@ -25,7 +25,9 @@
         <div class="text-center mt-3">
             <span>Não tem uma conta ainda? <a href="cadastro">Cadastre-se</a></span>
         </div>
+    <small>
+    	<strong>Dica Howard:</strong> <br>Login: FAESA <br>Senha: faesa123
+    </small>
     </div>
-    
 </body>
 </html>

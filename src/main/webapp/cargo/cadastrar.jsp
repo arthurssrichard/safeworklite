@@ -10,7 +10,7 @@
 <jsp:include page="../utils/header.jsp"/>
 <body>
     <div class="container mt-5">
-    	<a href="/SafeWorkManagerLite/cargo">← Voltar</a>
+    	<a href="/SafeWorkManagerLite/cargo/">← Voltar</a>
         <h2 class="mb-4">Cadastrar Cargo</h2>
         <form action="store" method="POST">
             <div class="mb-3">

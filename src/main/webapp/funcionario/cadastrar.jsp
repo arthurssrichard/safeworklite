@@ -15,7 +15,7 @@
 <jsp:include page="../utils/header.jsp"/>
 <body>
     <div class="container mt-5">
-    	<a href="/SafeWorkManagerLite/funcionario">← Voltar</a>
+    	<a href="/SafeWorkManagerLite/funcionario/">← Voltar</a>
         <h2 class="mb-4">Cadastrar Funcionário</h2>
         <form action="store" method="POST">
             <div class="mb-3">

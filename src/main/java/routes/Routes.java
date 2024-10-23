@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Controller.CargoController;
 import Controller.DashboardController;
@@ -38,7 +39,8 @@ import Controller.FuncionarioController;
 		"/examinacao/", "/examinacao/cadastrar", "/examinacao/store", "/examinacao/edit", "/examinacao/update",
 		"/examinacao/delete",
 
-		"/dashboard/", "/dashboard/quantExamesInadequadosCargo"
+		"/dashboard/", "/dashboard/quantExamesInadequadosCargo",
+		"/imagens/logo.png"
 
 })
 public class Routes extends HttpServlet {
@@ -53,7 +55,14 @@ public class Routes extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getServletPath();
 		System.out.println("GET: " + action);
-
+		
+		HttpSession session = request.getSession(false);
+		
+	    if (session == null || session.getAttribute("id") == null) {
+	    	response.sendRedirect("login.jsp");
+	        return;
+	    }
+	    
 		/* ROTAS */
 		switch (action) {
 		case "/":

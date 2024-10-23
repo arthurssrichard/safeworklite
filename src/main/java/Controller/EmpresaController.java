@@ -25,7 +25,7 @@ public class EmpresaController {
 
 			System.out.printf("Tentativa de login: Sucesso: %s | %s \n", id, empresa_nome);
 
-			response.sendRedirect("dashboard/"); // ajeitar onde vai ser essa home ai emm
+			response.sendRedirect("dashboard/"); 
 		} else {
 			// se der erro
 			request.setAttribute("errorMessage", "Usuário ou senha inválidos");

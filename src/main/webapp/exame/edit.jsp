@@ -34,7 +34,7 @@
 
 <body>
     <div class="container mt-5">
-	    <a href="/SafeWorkManagerLite/exame">← Voltar</a>
+	    <a href="/SafeWorkManagerLite/exame/">← Voltar</a>
         <h2 class="mb-4">Editar Exame (<%=id %>)</h2>
         <form action="update" method="POST" class="row g-3">
             <div class="col-12">

@@ -15,12 +15,6 @@
     <title>Safe Work Lite - Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/SafeWorkManagerLite/css/styles.css">
-    <style>
-        .separator {
-            border-top: 1px solid #c0c0c0; /* Linha suave com cor cinza clara */
-            margin: 20px 0; /* Espaçamento vertical */
-        }
-    </style>
 </head>
 <body>
     <jsp:include page="../utils/header.jsp"/>
@@ -32,13 +26,13 @@
                 }
             %>!</h1>
         </section>
-        
+
         <section id="total-registros" class="text-start mb-4 mt-5">
             <h2>Total de Registros Existentes</h2>
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th>Tipo</th>
+                        <th>Tabelas</th>
                         <th>Registros</th>
                     </tr>
                 </thead>
@@ -67,14 +61,14 @@
             </table>
         </section>
         
-        <div class="separator"></div> <!-- Linha de separação -->
+        <hr>
 
         <section id="grafico" class="mb-5 mt-5">
-            <h3>Quantidade de Examinacões Inadequadas</h3>
+            <h3>Examinacões inadequadas por cargo</h3>
             <canvas id="myChart" width="400" height="200"></canvas>
         </section>
 
-        <div class="separator"></div> <!-- Linha de separação -->
+        <hr>
 
         <section id="top-funcionarios" class="table-responsive">
             <h3 class="mb-3">Top 5 Funcionários Fora do Padrão</h3>
@@ -149,7 +143,7 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: 'Quantidade de Examinacoes Inadequadas',
+                            label: 'Quantidade de Examinacões Inadequadas',
                             data: quantities,
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',

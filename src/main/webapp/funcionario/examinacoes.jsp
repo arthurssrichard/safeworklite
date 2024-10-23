@@ -22,7 +22,7 @@
         
         <div class="d-flex justify-content-between align-items-center mb-4">
 	        <h2>Examinações de <%= funcionario.getNome() %></h2>
-            <a href="cadastrar?idFuncionario=<%= funcionario.getID() %>" class="btn btn-primary">Nova examinação</a>
+            <a href="/SafeWorkManagerLite/examinacao/cadastrar?idFuncionario=<%= funcionario.getID() %>" class="btn btn-primary">Nova examinação</a>
         </div>
 
         <% if (lista == null || lista.isEmpty()) { %>

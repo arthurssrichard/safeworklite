@@ -10,7 +10,7 @@
 <jsp:include page="../utils/header.jsp"/>
 <body>
     <div class="container mt-5">
-	    <a href="/SafeWorkManagerLite/exame">← Voltar</a>
+	    <a href="/SafeWorkManagerLite/exame/">← Voltar</a>
         <h2 class="mb-4">Cadastrar Exame</h2>
         <form action="store" method="POST" class="row g-3">
             <div class="col-12">
