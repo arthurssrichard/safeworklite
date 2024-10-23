@@ -4,16 +4,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-	// lembrar de adicionar o driver amamanha
 	private static final String driver = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/safeworklite?useTimezone=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String URL = "jdbc:mysql://Localhost:3306/safeworklite?useTimezone=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8";
+    private static final String USER = "labdatabase";
+    private static final String PASSWORD = "lab@Database2022";
     
     public static Connection getConnection() {
         Connection con = null;
         try {
-            Class.forName(driver);  // Adiciona esta linha
+            Class.forName(driver);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             return con; 
         } catch (ClassNotFoundException e) {
