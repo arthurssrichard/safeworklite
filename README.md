@@ -2,6 +2,7 @@
 
 Este guia descreve os passos para configurar e executar o projeto SafeWorkLite em um ambiente CentOS. Siga atentamente as etapas abaixo para garantir que tudo esteja funcionando corretamente.
 Vídeo do youtube demonstrando projeto: [https://youtu.be/GdbUlvkJFZ8] | Diagrama relacional está localizado em /src/db
+> **OBS:** Caso queira ver especificamente comandos SQL, eles estão localizados nas classes DAO, no diretório /src/main/java/dao
 ## Requisitos
 
 - **CentOS** instalado com **Java** e **MySQL**.
