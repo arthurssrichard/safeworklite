@@ -1,7 +1,7 @@
 # SafeWorkLite - Documentação de Configuração
 
 Este guia descreve os passos para configurar e executar o projeto SafeWorkLite em um ambiente CentOS. Siga atentamente as etapas abaixo para garantir que tudo esteja funcionando corretamente.
-
+Vídeo do youtube demonstrando projeto: [https://youtu.be/GdbUlvkJFZ8]
 ## Requisitos
 
 - **CentOS** instalado com **Java** e **MySQL**.
@@ -22,7 +22,7 @@ git clone -b CentOS https://github.com/arthurssrichard/safeworklite.git
 Instale o Maven em sua máquina. A versão mínima recomendada é a **3.8.5**. Para instalar a versão correta, siga os passos abaixo:
 
 ```bash
-wget https://downloads.apache.org/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
+wget https://archive.apache.org/dist/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
 sudo tar xzvf apache-maven-3.8.5-bin.tar.gz -C /opt
 sudo ln -s /opt/apache-maven-3.8.5 /opt/maven
 ```
