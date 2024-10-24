@@ -1,7 +1,7 @@
 # SafeWorkLite - Documentação de Configuração
 
 Este guia descreve os passos para configurar e executar o projeto SafeWorkLite em um ambiente CentOS. Siga atentamente as etapas abaixo para garantir que tudo esteja funcionando corretamente.
-Vídeo do youtube demonstrando projeto: [https://youtu.be/GdbUlvkJFZ8]
+Vídeo do youtube demonstrando projeto: [https://youtu.be/GdbUlvkJFZ8] | Diagrama relacional está localizado em /src/db
 ## Requisitos
 
 - **CentOS** instalado com **Java** e **MySQL**.
