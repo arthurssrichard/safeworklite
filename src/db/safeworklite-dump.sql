@@ -95,8 +95,8 @@ CREATE TABLE `examinacoes` (
   PRIMARY KEY (`ID`),
   KEY `ID_funcionario` (`ID_funcionario`),
   KEY `ID_exame` (`ID_exame`),
-  CONSTRAINT `examinacoes_ibfk_1` FOREIGN KEY (`ID_funcionario`) REFERENCES `funcionarios` (`ID`),
-  CONSTRAINT `examinacoes_ibfk_2` FOREIGN KEY (`ID_exame`) REFERENCES `exames` (`ID`)
+  CONSTRAINT `examinacoes_ibfk_1` FOREIGN KEY (`ID_funcionario`) REFERENCES `funcionarios` (`ID`) ON DELETE CASCADE,
+  CONSTRAINT `examinacoes_ibfk_2` FOREIGN KEY (`ID_exame`) REFERENCES `exames` (`ID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
